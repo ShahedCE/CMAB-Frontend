@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+
+  --brand-green: #0aa34f;
+  --brand-green-dark: #087a3b;
+  --brand-green-soft: #eaf8f0;
+
+  --brand-blue: #1277c5;
+  --brand-blue-soft: #eaf4ff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@layer utilities {
+  .bg-brand-green {
+    background-color: var(--brand-green);
+  }
+
+  .bg-brand-green-soft {
+    background-color: var(--brand-green-soft);
+  }
+
+  .bg-brand-blue-soft {
+    background-color: var(--brand-blue-soft);
+  }
+
+  .text-brand-green {
+    color: var(--brand-green);
+  }
+
+  .text-brand-green-dark {
+    color: var(--brand-green-dark);
+  }
+
+  .border-soft {
+    border-color: var(--border-soft);
+  }
+
+  .ring-brand-green {
+    --tw-ring-color: var(--brand-green);
+  }
+}
