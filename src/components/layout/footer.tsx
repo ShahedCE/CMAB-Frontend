@@ -12,7 +12,7 @@ type FooterLink = {
 const quickLinks: FooterLink[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Member", href: "/member" },
+  { label: "Member", href: "/members" },
   { label: "Activities", href: "/activities" },
   { label: "Contact", href: "/contact" },
 ];
