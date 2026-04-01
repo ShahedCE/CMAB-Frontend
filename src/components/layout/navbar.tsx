@@ -14,7 +14,7 @@ type NavItem = {
 const navItems: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Member", href: "/member" },
+  { label: "Member", href: "/members" },
   { label: "Activities", href: "/activities" },
 
 ];
@@ -65,7 +65,7 @@ function DesktopNavLink({ href, label, active }: DesktopNavLinkProps) {
       <span>{label}</span>
 
       {!active ? (
-        <span className="absolute inset-x-4 bottom-1 h-0.5 origin-center scale-x-0 rounded-full bg-[var(--brand-green)] transition-transform duration-300 group-hover:scale-x-100" />
+        <span className="absolute inset-x-4 bottom-1 h-0.5 origin-center scale-x-0 rounded-full bg-(--brand-green) transition-transform duration-300 group-hover:scale-x-100" />
       ) : null}
     </Link>
   );
