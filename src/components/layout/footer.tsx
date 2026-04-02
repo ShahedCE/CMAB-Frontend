@@ -62,8 +62,8 @@ function FooterNavLink({ href, label, active }: FooterNavLinkProps) {
       href={href}
       className={`inline-flex items-center rounded-full px-3 py-2 text-sm font-medium transition-all duration-300 ${
         active
-          ? "bg-[var(--brand-green)] text-white shadow-[0_10px_24px_rgba(10,163,79,0.22)]"
-          : "text-slate-600 hover:-translate-y-0.5 hover:bg-white hover:text-[var(--brand-green-dark)]"
+          ? "bg-(--brand-green) text-white shadow-[0_10px_24px_rgba(10,163,79,0.22)]"
+          : "text-slate-600 hover:-translate-y-0.5 hover:bg-white hover:text-(--brand-green-dark)"
       }`}
     >
       {label}
@@ -84,7 +84,8 @@ function SocialLink({ href, label, children }: SocialLinkProps) {
       target="_blank"
       rel="noreferrer"
       aria-label={label}
-      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(10,163,79,0.14)] bg-white text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-green)] hover:bg-[var(--brand-green-soft)] hover:text-[var(--brand-green-dark)] hover:shadow-md"
+      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(10,163,79,0.14)] bg-white text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-1
+       hover:border-(--brand-green) hover:bg-(--brand-green-soft) hover:text-(--brand-green-dark) hover:shadow-md"
     >
       {children}
     </Link>
@@ -100,7 +101,7 @@ export function Footer() {
         <div className="grid gap-10 py-12 sm:py-14 lg:grid-cols-[1.2fr_1fr_1fr] lg:gap-12">
           <div>
             <div className="max-w-md">
-              <span className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-semibold tracking-[0.14em] text-[var(--brand-green-dark)] shadow-sm">
+              <span className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-semibold tracking-[0.14em] text-(--brand-green-dark) shadow-sm">
                 CMAB
               </span>
 
