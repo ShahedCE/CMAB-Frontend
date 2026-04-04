@@ -14,7 +14,7 @@ export function Section({
   children,
 }: SectionProps) {
   return (
-    <section className="rounded-4xl border border-slate-200 bg-white/90 p-6 shadow-sm backdrop-blur sm:p-8 lg:p-10">
+    <>
       <div className="max-w-3xl">
         {eyebrow ? (
           <span className="inline-flex rounded-full bg-(--brand-green-soft) px-3 py-1 text-xs font-semibold tracking-[0.16em] text-(--brand-green-dark)">
@@ -34,6 +34,6 @@ export function Section({
       </div>
 
       <div className="mt-8">{children}</div>
-    </section>
+   </>
   );
 }

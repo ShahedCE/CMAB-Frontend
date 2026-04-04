@@ -15,6 +15,7 @@ const quickLinks: FooterLink[] = [
   { label: "Member", href: "/members" },
   { label: "Activities", href: "/activities" },
   { label: "Contact", href: "/contact" },
+  { label: "Join Us", href: "/join" },
 ];
 
 
@@ -137,7 +138,7 @@ export function Footer() {
               Connect with us
             </h4>
               <div className="mt-3 flex items-center gap-3">
-                <SocialLink href="https://facebook.com" label="Facebook">
+                <SocialLink href="https://www.facebook.com/people/Christian-Medical-Association-Bangladesh/61586551870820/" label="Facebook">
                   <FacebookIcon />
                 </SocialLink>
 

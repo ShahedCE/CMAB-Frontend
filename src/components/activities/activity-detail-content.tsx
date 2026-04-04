@@ -10,7 +10,7 @@ export function ActivityDetailContent({
   activity,
 }: ActivityDetailContentProps) {
   return (
-    <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+    <div>
       <article className="overflow-hidden rounded-4xl border border-slate-200 bg-white shadow-sm">
         <div className="relative h-70 w-full bg-slate-100 sm:h-90 lg:h-115">
           <Image
@@ -47,7 +47,7 @@ export function ActivityDetailContent({
       </article>
 
       <aside className="space-y-6">
-        <div className="rounded-4xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="rounded-4xl mt-5 border border-slate-200 bg-white p-6 shadow-sm">
           <h2 className="text-lg font-semibold text-slate-900">
             Additional Info
           </h2>
@@ -56,19 +56,11 @@ export function ActivityDetailContent({
             {activity.additionalInfo || "More information will be available soon."}
           </p>
         </div>
-
-        <div className="rounded-4xl border border-slate-200 bg-white p-6 shadow-sm">
-          <h2 className="text-lg font-semibold text-slate-900">
-            Quick Actions
-          </h2>
-
-          <div className="mt-4 flex flex-col gap-3">
-            <Button href="/activities">Back to Activities</Button>
-            <Button href="/contact" variant="secondary">
-              Contact Us
+        <div className="mt-8 items-center flex flex-col gap-8">
+            <Button href="/activities" className="w-fit">
+              Back to Activities
             </Button>
           </div>
-        </div>
       </aside>
     </div>
   );

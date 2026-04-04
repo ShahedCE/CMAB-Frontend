@@ -1,0 +1,123 @@
+"use client";
+
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormInput } from "@/components/contact/form-input";
+import { FormTextarea } from "@/components/contact/form-textarea";
+import {
+  contactFormSchema,
+  type ContactFormValues,
+} from "@/lib/validations/contact";
+import { submitContactMessage } from "@/lib/submit-contact-message";
+
+export function ContactForm() {
+  const [submitSuccess, setSubmitSuccess] = useState("");
+  const [submitError, setSubmitError] = useState("");
+
+  const {
+    register, handleSubmit,reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactFormValues>({
+    resolver: zodResolver(contactFormSchema),
+    mode: "onChange",
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = async (values: ContactFormValues) => {
+    setSubmitSuccess("");
+    setSubmitError("");
+
+    try {
+      const payload = {
+        name: values.name,
+        email: values.email,
+        message: values.message,
+      };
+
+      console.log("Validated contact form data:", payload);
+
+      await submitContactMessage(payload);
+
+      setSubmitSuccess("Your message has been sent successfully.");
+      reset();
+    } catch (error) {
+      console.error(error);
+      setSubmitError("Something went wrong. Please try again.");
+    }
+  };
+
+  return (
+    <div className="rounded-4xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+      <div className="max-w-xl">
+        <span className="inline-flex rounded-full bg-(--brand-green-soft) px-3 py-1 text-xs font-semibold
+         tracking-[0.16em] text-(--brand-green-dark)">
+          SEND A MESSAGE
+        </span>
+
+        <h2 className="mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          Contact Form
+        </h2>
+
+        <p className="mt-3 text-sm leading-7 text-slate-600">
+          Fill out the form and our team will get back to you as soon as possible.
+        </p>
+      </div>
+
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-8 grid gap-5">
+        <FormInput
+          label="Name"
+          placeholder="Enter your name"
+          requiredMark
+          error={errors.name?.message}
+          {...register("name")}
+        />
+
+        <FormInput
+          label="Email"
+          type="email"
+          placeholder="Enter your email"
+          requiredMark
+          error={errors.email?.message}
+          {...register("email")}
+        />
+
+        <FormTextarea
+          label="Message"
+          placeholder="Write your message"
+          requiredMark
+          error={errors.message?.message}
+          {...register("message")}
+        />
+
+        {submitSuccess ? (
+          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+            {submitSuccess}
+          </div>
+        ) : null}
+
+        {submitError ? (
+          <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            {submitError}
+          </div>
+        ) : null}
+
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-(--brand-green) 
+          px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_24px_rgba(10,163,79,0.22)]
+           transition-all duration-300 hover:-translate-y-0.5 hover:bg-(--brand-green-dark)
+            hover:shadow-[0_16px_30px_rgba(10,163,79,0.28)] disabled:cursor-not-allowed
+             disabled:opacity-70 disabled:hover:translate-y-0"
+        >
+          {isSubmitting ? "Sending..." : "Send Message"}
+        </button>
+      </form>
+    </div>
+  );
+}

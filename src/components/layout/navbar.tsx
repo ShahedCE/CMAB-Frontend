@@ -16,6 +16,7 @@ const navItems: NavItem[] = [
   { label: "About", href: "/about" },
   { label: "Member", href: "/members" },
   { label: "Activities", href: "/activities" },
+  { label: "Contact", href: "/contact" },
 
 ];
 
@@ -137,7 +138,7 @@ export function Navbar() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-white/60 bg-[rgba(245,250,247,0.88)] shadow-[0_12px_35px_rgba(15,23,42,0.08)] backdrop-blur-xl"
+          ? "border-b border-white/60 bg-[rgba(244,255,248,0.88)] shadow-[0_12px_35px_rgba(15,23,42,0.08)] backdrop-blur-xl"
           : "bg-[linear-gradient(to_bottom,rgba(240,249,244,0.95),rgba(255,255,255,0.92))]"
       }`}
     >
@@ -162,15 +163,11 @@ export function Navbar() {
 
           <div className="hidden shrink-0 items-center gap-3 lg:flex">
             <Link
-              href="/contact"
-              className="inline-flex h-11 items-center justify-center rounded-full border border-[rgba(10,163,79,0.16)] bg-white px-5 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--brand-green)] hover:text-[var(--brand-green-dark)] hover:shadow-md"
-            >
-              Contact
-            </Link>
-
-            <Link
               href="/join"
-              className="inline-flex h-11 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--brand-green),var(--brand-green-dark))] px-5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(10,163,79,0.28)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(10,163,79,0.34)]"
+              className="inline-flex h-11 items-center justify-center rounded-full 
+              bg-[linear-gradient(135deg,var(--brand-green),var(--brand-green-dark))] px-5
+               text-sm font-semibold text-white shadow-[0_12px_28px_rgba(10,163,79,0.28)] 
+               transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(10,163,79,0.34)]"
             >
               Join CMAB
             </Link>
@@ -196,11 +193,12 @@ export function Navbar() {
       <div
         id="mobile-menu"
         className={`overflow-hidden transition-all duration-300 lg:hidden ${
-          menuOpen ? "max-h-[720px] opacity-100" : "max-h-0 opacity-0"
+          menuOpen ? "max-h-180 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <Container className="pb-4">
-          <div className="rounded-3xl border border-white/70 bg-white/95 p-3 shadow-[0_18px_40px_rgba(15,23,42,0.10)] backdrop-blur">
+          <div className="rounded-3xl border border-white/70 bg-white/95 p-3 
+          shadow-[0_18px_40px_rgba(15,23,42,0.10)] backdrop-blur">
             <nav className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <MobileNavLink
@@ -217,7 +215,11 @@ export function Navbar() {
               <Link
                 href="/contact"
                 onClick={() => setMenuOpen(false)}
-                className="inline-flex h-12 items-center justify-center rounded-2xl border border-[rgba(10,163,79,0.14)] bg-white px-5 text-sm font-semibold text-slate-700 transition-all duration-300 hover:border-[var(--brand-green)] hover:bg-[var(--brand-green-soft)] hover:text-[var(--brand-green-dark)]"
+                className="inline-flex h-12 items-center justify-center 
+                rounded-2xl border border-[rgba(10,163,79,0.14)] bg-white 
+                px-5 text-sm font-semibold text-slate-700 transition-all duration-300
+                 hover:border-(--brand-green)
+                  hover:bg-(--brand-green-soft) hover:text-(--brand-green-dark)"
               >
                 Contact
               </Link>
@@ -225,7 +227,11 @@ export function Navbar() {
               <Link
                 href="/join"
                 onClick={() => setMenuOpen(false)}
-                className="inline-flex h-12 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,var(--brand-green),var(--brand-green-dark))] px-5 text-sm font-semibold text-white shadow-[0_12px_24px_rgba(10,163,79,0.24)] transition-all duration-300 hover:shadow-[0_16px_32px_rgba(10,163,79,0.30)]"
+                className="inline-flex h-12 items-center justify-center
+                 rounded-2xl bg-[linear-gradient(135deg,var(--brand-green),
+                 var(--brand-green-dark))] px-5 text-sm font-semibold
+                  text-white shadow-[0_12px_24px_rgba(10,163,79,0.24)]
+                   transition-all duration-300 hover:shadow-[0_16px_32px_rgba(10,163,79,0.30)]"
               >
                 Join CMAB
               </Link>
