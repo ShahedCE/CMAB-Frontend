@@ -9,12 +9,12 @@ type FilterBarProps = {
   activeFilter: MemberCategory;
   onChange: (value: MemberCategory) => void;
 };
-
+  
 const filterOptions: FilterOption[] = [
-  { label: "All Members", value: "all" },
-  { label: "General Members", value: "general" },
-  { label: "Light Members", value: "light" },
-  { label: "Irregular Members", value: "irregular" },
+  { label: "সকল সদস্য", value: "all" }, 
+  { label: "সাধারণ সদস্য", value: "general" },
+  { label: "লাইট সদস্য", value: "light" },
+  { label: "অনিয়মিত সদস্য", value: "irregular" },
 ];
 
 export function FilterBar({

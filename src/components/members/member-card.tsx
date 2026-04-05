@@ -15,9 +15,9 @@ const categoryStyles: Record<Member["category"], string> = {
 };
 
 const categoryLabels: Record<Member["category"], string> = {
-  general: "General Member",
-  light: "Light Member",
-  irregular: "Irregular Member",
+    general: "সাধারণ সদস্য",
+  light: "লাইট সদস্য",
+  irregular: "অনিয়মিত সদস্য",
 };
 
 export function MemberCard({ member }: MemberCardProps) {

@@ -100,22 +100,7 @@ function InfoItem({ icon, title, content }: InfoItemProps) {
 export function ContactInfo() {
   return (
     <div className="space-y-5">
-      <div>
-        <span className="inline-flex rounded-full bg-(--brand-green-soft) px-3 py-1
-         text-xs font-semibold tracking-[0.16em] text-(--brand-green-dark)">
-          CONTACT INFO
-        </span>
-
-        <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-          Get in touch with CMAB
-        </h1>
-
-        <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
-          Reach out to us for membership, collaboration, activities, or general
-          inquiries. We would love to hear from you.
-        </p>
-      </div>
-
+     
       <InfoItem
         icon={<LocationIcon />}
         title="Main Office Address"

@@ -24,7 +24,7 @@ export function SearchBar({ value, onChange }: SearchBarProps) {
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Search members by name..."
+        placeholder="নাম দিয়ে সদস্য খুঁজুন..."       
         className="h-12 w-full rounded-2xl border border-slate-200 bg-white pl-12 pr-4 text-sm
          text-slate-800 outline-none transition-all duration-300 placeholder:text-slate-400 
          focus:border-(--brand-green) focus:ring-4 focus:ring-[rgba(10,163,79,0.12)]"

@@ -7,14 +7,12 @@ type SectionProps = {
   children: ReactNode;
 };
 
-export function Section({
-  eyebrow,
-  title,
-  description,
-  children,
+export function Section({ eyebrow, title, description, children,
 }: SectionProps) {
   return (
     <>
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-emerald-700">
+      
       <div className="max-w-3xl">
         {eyebrow ? (
           <span className="inline-flex rounded-full bg-(--brand-green-soft) px-3 py-1 text-xs font-semibold tracking-[0.16em] text-(--brand-green-dark)">
@@ -34,6 +32,7 @@ export function Section({
       </div>
 
       <div className="mt-8">{children}</div>
+      </section>
    </>
   );
 }

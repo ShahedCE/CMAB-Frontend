@@ -61,22 +61,8 @@ export function JoinForm() {
   };
 
   return (
-    <div className="rounded-4xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
-      <div className="max-w-2xl">
-        <span className="inline-flex rounded-full bg-(--brand-green-soft) px-3 py-1 text-xs font-semibold 
-        tracking-[0.16em] text-(--brand-green-dark)">
-          MEMBER REQUEST
-        </span>
-
-        <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-          Join CMAB
-        </h1>
-
-        <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
-          Fill out the form below to request membership. Your information will be
-          reviewed by the team before approval.
-        </p>
-      </div>
+    <div className="rounded-4xl border border-slate-200 bg-white  shadow-sm sm:p-8 lg:p-10">
+  
 
       <form onSubmit={handleSubmit(onSubmit)} className="mt-8 grid gap-5">
         <FormInput

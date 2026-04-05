@@ -1,21 +1,24 @@
 import { ActivitiesGrid } from "@/components/activities/activities-grid";
-import { Section } from "@/components/ui/section";
+import { PageHero } from "@/components/ui/page-hero";
 import { getActivities } from "@/lib/activities";
+import {CalendarDays } from "lucide-react";
 
 export default async function ActivitiesPage() {
   const activities = await getActivities();
 
   return (
-    <main className="min-h-screen bg-[linear-gradient(to_bottom,#f8fcf9,#ffffff)] py-10 sm:py-14">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Section
-          eyebrow="COMMUNITY ACTIVITIES"
-          title="Explore Our Activities"
-          description="Discover the programs, events, and outreach initiatives that reflect our mission of service, learning, and community engagement."
-        >
-          <ActivitiesGrid activities={activities} />
-        </Section>
+    <main className="min-h-screen bg-[linear-gradient(to_bottom,#f8fcf9,#ffffff)] ">
+ 
+       <PageHero
+       
+        title="আমাদের কার্যক্রম"
+        description="সেবা, প্রশিক্ষণ, সচেতনতামূলক উদ্যোগ এবং কমিউনিটি উন্নয়নে আমাদের বিভিন্ন কার্যক্রম সম্পর্কে জানুন।"
+        icon="calendar"
+      />
+                <div className="mx-auto mt-10 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <ActivitiesGrid activities={activities} />
       </div>
     </main>
   );
 }
+
