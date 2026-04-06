@@ -28,7 +28,7 @@ export default function About() {
   ];
 
   return (
-    <main className="bg-gray-50 min-h-screen pb-20">
+    <main className="bg-gray-50 min-h-screen pb-10">
       {/* Page Header */}
       <section className=" bg-emerald-700 text-white pt-36 pb-24 px-6 relative overflow-hidden shadow-2xl w-full mb-20">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>

@@ -1,7 +1,6 @@
 import { ActivitiesGrid } from "@/components/activities/activities-grid";
 import { PageHero } from "@/components/ui/page-hero";
 import { getActivities } from "@/lib/activities";
-import {CalendarDays } from "lucide-react";
 
 export default async function ActivitiesPage() {
   const activities = await getActivities();

@@ -21,13 +21,10 @@ export function ActivityCard({ activity }: ActivityCardProps) {
 
       <div className="p-5 sm:p-6">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full bg-(--brand-green-soft) px-3 py-1 text-xs font-semibold text-(--brand-green-dark)">
-            {activity.category}
-          </span>
 
           {activity.date ? (
             <span className="text-xs font-medium text-slate-500">
-              {activity.date}
+              Date: {activity.date}
             </span>
           ) : null}
         </div>

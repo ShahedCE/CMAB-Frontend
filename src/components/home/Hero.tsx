@@ -13,7 +13,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center mt-20">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -29,11 +29,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight mb-6"
+          className="text-4xl md:text-6xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6"
         >
-          খ্রিস্টিয়ান মেডিকেল <br className="hidden md:block"/>
+            CHRISTIAN MEDICAL <br className="hidden md:block"/>
           <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-100 to-white">
-            অ্যাসোসিয়েশন বাংলাদেশ
+            ASSOCIATION BANGLADESH
           </span>
         </motion.h1>
 

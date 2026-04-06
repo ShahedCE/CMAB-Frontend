@@ -11,9 +11,7 @@ export const activitiesData: Activity[] = [
     image:
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80",
     date: "2026-02-10",
-    category: "Healthcare Outreach",
-    additionalInfo:
-      "Location: Dhaka. Volunteers included physicians, medical students, and coordinators from the local community.",
+   
   },
   {
     id: "leadership-training",
@@ -25,9 +23,7 @@ export const activitiesData: Activity[] = [
     image:
       "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
     date: "2026-01-18",
-    category: "Training",
-    additionalInfo:
-      "Focused on emerging leaders and active members who are preparing for greater service roles.",
+   
   },
   {
     id: "youth-mentorship-program",
@@ -39,9 +35,7 @@ export const activitiesData: Activity[] = [
     image:
       "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
     date: "2025-11-22",
-    category: "Mentorship",
-    additionalInfo:
-      "Included group sessions, personal mentoring time, and practical goal-setting exercises.",
+  
   },
   {
     id: "health-awareness-seminar",
@@ -53,8 +47,6 @@ export const activitiesData: Activity[] = [
     image:
       "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80",
     date: "2025-10-08",
-    category: "Seminar",
-    additionalInfo:
-      "Participants received educational materials and practical health guidance from expert speakers.",
+   
   },
 ];

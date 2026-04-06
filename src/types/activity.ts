@@ -4,7 +4,5 @@ export interface Activity {
   description: string;
   fullDescription: string;
   image: string;
-  date?: string;
-  category: string;
-  additionalInfo?: string;
+  date: string;
 }

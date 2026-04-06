@@ -1,23 +1,24 @@
 import Image from "next/image";
 import type { Member } from "@/types/member";
+import { Button } from "../ui/button";
 
 type MemberCardProps = {
   member: Member;
 };
 
-const categoryStyles: Record<Member["category"], string> = {
-  general:
-    "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
-  light:
-    "bg-sky-50 text-sky-700 ring-1 ring-sky-200",
-  irregular:
-    "bg-amber-50 text-amber-700 ring-1 ring-amber-200",
+const categoryStyles: Record<Member["memberType"], string> = {
+  
+  general: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
+  light: "bg-sky-50 text-sky-700 ring-1 ring-sky-200",
+  irregular: "bg-amber-50 text-amber-700 ring-1 ring-amber-200",
+  all: ""
 };
 
-const categoryLabels: Record<Member["category"], string> = {
-    general: "সাধারণ সদস্য",
+const categoryLabels: Record<Member["memberType"], string> = {
+  general: "সাধারণ সদস্য",
   light: "লাইট সদস্য",
   irregular: "অনিয়মিত সদস্য",
+  all: ""
 };
 
 export function MemberCard({ member }: MemberCardProps) {
@@ -40,21 +41,25 @@ export function MemberCard({ member }: MemberCardProps) {
               {member.name}
             </h3>
             <p className="mt-1 text-sm font-medium text-slate-600">
-              {member.role}
+              {member.profession} - {member.organization}
             </p>
           </div>
 
           <span
-            className={`shrink-0 rounded-full px-3 py-1 text-xs font-semibold ${categoryStyles[member.category]}`}
+            className={`shrink-0 rounded-full px-3 py-1 text-xs font-semibold ${categoryStyles[member.memberType]}`}
           >
-            {categoryLabels[member.category]}
+            {categoryLabels[member.memberType]}
           </span>
         </div>
 
         <p className="text-sm leading-6 text-slate-600">
-          {member.description}
+          {member.shortBio}
         </p>
+        <div className="mt-6">
+          <Button href={`/members/${member.slug}`}>View Details</Button> {/*redirecting to the dynamic member page*/}
+        </div>
       </div>
+       
     </article>
   );
 }
