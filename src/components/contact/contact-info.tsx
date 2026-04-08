@@ -106,9 +106,9 @@ export function ContactInfo() {
         title="প্রধান কার্যালয়ের ঠিকানা"
         content={
           <p>
-            Christian Medical Association Bangladesh (CMAB)
+            খ্রিস্টিয়ান মেডিকেল অ্যাসোসিয়েশন বাংলাদেশ (সিএমএবি)
             <br />
-            123 Community Road, Dhaka, Bangladesh
+            ১২৩ কমিউনিটি রোড, ঢাকা, বাংলাদেশ
           </p>
         }
       />

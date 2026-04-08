@@ -19,7 +19,9 @@ export default async function ActivityDetailsPage({
   }
 
   return (
-    <main className="min-h-screen bg-[linear-gradient(to_bottom,#f8fcf9,#ffffff)] py-10 sm:py-14">
+    <main className="relative min-h-screen overflow-hidden bg-[linear-gradient(to_bottom,#f3fbf6,#ffffff)] py-10 sm:py-14">
+      <div className="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-emerald-200/40 blur-3xl" />
+      <div className="pointer-events-none absolute -right-16 top-32 h-72 w-72 rounded-full bg-sky-200/35 blur-3xl" />
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <ActivityDetailContent activity={activity} />
       </div>

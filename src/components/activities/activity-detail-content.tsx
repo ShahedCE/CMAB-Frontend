@@ -10,9 +10,11 @@ export function ActivityDetailContent({
   activity,
 }: ActivityDetailContentProps) {
   return (
-    <div>
-      <article className="overflow-hidden rounded-4xl border border-slate-200 bg-white shadow-sm">
-        <div className="relative h-70 w-full bg-slate-100 sm:h-90 lg:h-115">
+    <div className="space-y-8">
+      <article className="overflow-hidden rounded-4xl border border-emerald-100 bg-white/90 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
+        <div className="relative overflow-hidden">
+          <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.18),transparent_38%),radial-gradient(circle_at_top_right,rgba(59,130,246,0.14),transparent_30%)]" />
+          <div className="relative h-70 w-full bg-slate-100 sm:h-90 lg:h-115">
           <Image
             src={activity.image}
             alt={activity.title}
@@ -21,34 +23,34 @@ export function ActivityDetailContent({
             sizes="(max-width: 1024px) 100vw, 66vw"
             priority
           />
+            <div className="absolute inset-0 bg-linear-to-t from-slate-950/35 via-slate-900/10 to-transparent" />
+          </div>
         </div>
 
-        <div className="p-6 sm:p-8">
+        <div className="relative p-6 sm:p-8 lg:p-10">
           <div className="flex flex-wrap items-center gap-3">
             {activity.date ? (
-              <span className="text-sm font-medium text-slate-500">
+              <span className="inline-flex rounded-full bg-emerald-50 px-4 py-1.5 text-sm font-semibold text-emerald-700 ring-1 ring-emerald-200">
                 তারিখ: {activity.date}
               </span>
             ) : null}
           </div>
 
-          <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          <h1 className="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
             {activity.title}
           </h1>
 
-          <p className="mt-5 text-sm leading-8 text-slate-600 sm:text-base">
+          <p className="mt-6 max-w-4xl text-[15px] leading-8 text-slate-600 sm:text-base">
             {activity.fullDescription}
           </p>
         </div>
       </article>
 
-      <aside className="space-y-6">
-        <div className="mt-8 items-center flex flex-col gap-8">
-            <Button href="/activities" className="w-fit">
-              Back to Activities
-            </Button>
-          </div>
-      </aside>
+        <div className="flex items-center justify-center">
+          <Button href="/activities" className="w-fit">
+            Activities এ ফিরে যান
+          </Button>
+        </div>
     </div>
   );
 }

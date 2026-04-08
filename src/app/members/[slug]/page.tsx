@@ -206,7 +206,7 @@ export default async function MemberDetailsPage({ params }: PageProps) {
               <aside className="space-y-6">
                 <div className="mt-8 items-center flex flex-col gap-8">
                     <Button href="/members" className="w-fit">
-                      Back to Members
+                      Members এ ফিরে যান
                     </Button>
                   </div>
               </aside>

@@ -79,7 +79,7 @@ export function ContactForm() {
 
         <FormInput
           label="ইমেইল"
-          type="email"
+          type="text"
           placeholder="আপনার ইমেইল লিখুন"
           requiredMark
           error={errors.email?.message}
