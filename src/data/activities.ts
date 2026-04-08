@@ -3,50 +3,46 @@ import type { Activity } from "@/types/activity";
 export const activitiesData: Activity[] = [
   {
     id: "medical-camp-2026",
-    title: "Community Medical Camp 2026",
+    title: "কমিউনিটি মেডিকেল ক্যাম্প ২০২৬",
     description:
-      "A large-scale medical outreach providing free health checkups, consultation, and medicine support for underserved communities.",
+      "অসহায় জনগোষ্ঠীর জন্য বিনামূল্যে স্বাস্থ্য পরীক্ষা, পরামর্শ এবং ঔষধ সহায়তা প্রদানের একটি বৃহৎ চিকিৎসা সেবা কর্মসূচি।",
     fullDescription:
-      "The Community Medical Camp 2026 was organized to provide accessible healthcare services to underserved communities. Our volunteer doctors, nurses, and health workers offered free consultations, basic diagnostic support, general treatment advice, and medicine distribution. The event also included awareness sessions on hygiene, maternal health, child nutrition, and preventive care. This initiative reflects our mission to serve people with compassion, dignity, and professional excellence.",
+      "কমিউনিটি মেডিকেল ক্যাম্প ২০২৬ আয়োজন করা হয়েছিল অসহায় সম্প্রদায়ের জন্য সহজলভ্য স্বাস্থ্যসেবা প্রদানের উদ্দেশ্যে। আমাদের স্বেচ্ছাসেবক চিকিৎসক, নার্স এবং স্বাস্থ্যকর্মীরা বিনামূল্যে পরামর্শ, প্রাথমিক রোগ নির্ণয়, সাধারণ চিকিৎসা পরামর্শ এবং ঔষধ বিতরণ করেছেন। অনুষ্ঠানে স্বাস্থ্যবিধি, মাতৃস্বাস্থ্য, শিশু পুষ্টি এবং প্রতিরোধমূলক যত্ন সম্পর্কে সচেতনতামূলক সেশনও অন্তর্ভুক্ত ছিল। এই উদ্যোগটি করুণা, মর্যাদা এবং পেশাদার দক্ষতার সাথে মানুষের সেবা করার আমাদের লক্ষ্যকে প্রতিফলিত করে।",
     image:
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80",
-    date: "2026-02-10",
-   
+    date: "১০ ফেব্রুয়ারি ২০২৬",
   },
   {
     id: "leadership-training",
-    title: "Leadership & Member Development Training",
+    title: "নেতৃত্ব ও সদস্য উন্নয়ন প্রশিক্ষণ",
     description:
-      "A growth-focused session designed to strengthen leadership skills, teamwork, and long-term community engagement.",
+      "নেতৃত্বের দক্ষতা, দলগত কাজ এবং দীর্ঘমেয়াদী সম্প্রদায় সম্পৃক্ততা শক্তিশালী করার জন্য ডিজাইন করা একটি উন্নয়নমূলক সেশন।",
     fullDescription:
-      "This training program was arranged to develop leadership qualities among members and prepare them for future responsibilities within the association. The sessions covered communication, decision-making, servant leadership, event planning, and team collaboration. Interactive activities, practical examples, and peer discussions made the event highly engaging and useful for both new and experienced members.",
+      "এই প্রশিক্ষণ কর্মসূচিটি সদস্যদের মধ্যে নেতৃত্বের গুণাবলী বিকাশ এবং সমিতির মধ্যে ভবিষ্যতের দায়িত্বের জন্য তাদের প্রস্তুত করার জন্য আয়োজন করা হয়েছিল। সেশনগুলিতে যোগাযোগ, সিদ্ধান্ত গ্রহণ, সেবামূলক নেতৃত্ব, অনুষ্ঠান পরিকল্পনা এবং দলগত সহযোগিতা অন্তর্ভুক্ত ছিল। ইন্টারঅ্যাক্টিভ কার্যক্রম, ব্যবহারিক উদাহরণ এবং সহকর্মীদের আলোচনা নতুন এবং অভিজ্ঞ উভয় সদস্যদের জন্য অনুষ্ঠানটিকে অত্যন্ত আকর্ষণীয় এবং উপকারী করে তুলেছে।",
     image:
       "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
-    date: "2026-01-18",
-   
+    date: "১৮ জানুয়ারি ২০২৬",
   },
   {
     id: "youth-mentorship-program",
-    title: "Youth Mentorship Program",
+    title: "যুব মেন্টরশিপ প্রোগ্রাম",
     description:
-      "A mentoring initiative connecting experienced professionals with youth members for guidance, encouragement, and personal growth.",
+      "তরুণ সদস্যদের নির্দেশনা, উৎসাহ এবং ব্যক্তিগত উন্নয়নের জন্য অভিজ্ঞ পেশাদারদের সাথে সংযুক্ত করার একটি পরামর্শদান উদ্যোগ।",
     fullDescription:
-      "The Youth Mentorship Program was created to support younger members through guidance, encouragement, and meaningful conversations with experienced professionals. Topics included career development, values-based leadership, medical service, and balancing personal growth with community responsibility. The program encouraged long-term mentoring relationships that can support the next generation of leaders.",
+      "যুব মেন্টরশিপ প্রোগ্রাম তৈরি করা হয়েছিল অভিজ্ঞ পেশাদারদের সাথে নির্দেশনা, উৎসাহ এবং অর্থপূর্ণ কথোপকথনের মাধ্যমে তরুণ সদস্যদের সমর্থন করার জন্য। বিষয়গুলির মধ্যে রয়েছে ক্যারিয়ার উন্নয়ন, মূল্যবোধ-ভিত্তিক নেতৃত্ব, চিকিৎসা সেবা এবং সম্প্রদায়ের দায়িত্বের সাথে ব্যক্তিগত বৃদ্ধির ভারসাম্য। প্রোগ্রামটি দীর্ঘমেয়াদী পরামর্শদান সম্পর্ককে উৎসাহিত করেছে যা পরবর্তী প্রজন্মের নেতাদের সমর্থন করতে পারে।",
     image:
       "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
-    date: "2025-11-22",
-  
+    date: "২২ নভেম্বর ২০২৫",
   },
   {
     id: "health-awareness-seminar",
-    title: "Public Health Awareness Seminar",
+    title: "জনস্বাস্থ্য সচেতনতা সেমিনার",
     description:
-      "An educational seminar focused on preventive healthcare, wellness awareness, and healthy lifestyle practices.",
+      "প্রতিরোধমূলক স্বাস্থ্যসেবা, সুস্থতা সচেতনতা এবং স্বাস্থ্যকর জীবনযাত্রার অনুশীলনের উপর কেন্দ্রীভূত একটি শিক্ষামূলক সেমিনার।",
     fullDescription:
-      "The Public Health Awareness Seminar brought together healthcare professionals and community participants to discuss preventive care, nutrition, mental well-being, and lifestyle management. The event aimed to help people better understand common health risks and everyday habits that improve long-term well-being. It also served as a platform for open discussion and community learning.",
+      "জনস্বাস্থ্য সচেতনতা সেমিনার স্বাস্থ্যসেবা পেশাদার এবং সম্প্রদায়ের অংশগ্রহণকারীদের একত্রিত করেছে প্রতিরোধমূলক যত্ন, পুষ্টি, মানসিক সুস্থতা এবং জীবনযাত্রা ব্যবস্থাপনা নিয়ে আলোচনা করতে। অনুষ্ঠানটির লক্ষ্য ছিল মানুষকে সাধারণ স্বাস্থ্য ঝুঁকি এবং দীর্ঘমেয়াদী সুস্থতার উন্নতি করে এমন দৈনন্দিন অভ্যাস সম্পর্কে আরও ভালভাবে বুঝতে সাহায্য করা। এটি খোলা আলোচনা এবং সম্প্রদায় শিক্ষার জন্য একটি প্ল্যাটফর্ম হিসাবেও কাজ করেছে।",
     image:
       "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80",
-    date: "2025-10-08",
-   
+    date: "০৮ অক্টোবর ২০২৫",
   },
 ];

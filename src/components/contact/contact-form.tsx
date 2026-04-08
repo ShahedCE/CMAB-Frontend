@@ -43,11 +43,11 @@ export function ContactForm() {
 
       await submitContactMessage(payload);
 
-      setSubmitSuccess("Your message has been sent successfully.");
+      setSubmitSuccess("আপনার বার্তা সফলভাবে পাঠানো হয়েছে! আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।");
       reset();
     } catch (error) {
       console.error(error);
-      setSubmitError("Something went wrong. Please try again.");
+      setSubmitError("কিছু সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।");
     }
   };
 
@@ -56,39 +56,39 @@ export function ContactForm() {
       <div className="max-w-xl">
         <span className="inline-flex rounded-full bg-(--brand-green-soft) px-3 py-1 text-xs font-semibold
          tracking-[0.16em] text-(--brand-green-dark)">
-          SEND A MESSAGE
+          বার্তা পাঠান
         </span>
 
         <h2 className="mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-          Contact Form
+         যোগাযোগ ফর্ম
         </h2>
 
         <p className="mt-3 text-sm leading-7 text-slate-600">
-          Fill out the form and our team will get back to you as soon as possible.
-        </p>
+        ফর্মটি পূরণ করুন—আমাদের টিম যত দ্রুত সম্ভব আপনার সাথে যোগাযোগ করবে।       
+         </p>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="mt-8 grid gap-5">
         <FormInput
-          label="Name"
-          placeholder="Enter your name"
+          label="নাম"
+          placeholder="আপনার নাম লিখুন"
           requiredMark
           error={errors.name?.message}
           {...register("name")}
         />
 
         <FormInput
-          label="Email"
+          label="ইমেইল"
           type="email"
-          placeholder="Enter your email"
+          placeholder="আপনার ইমেইল লিখুন"
           requiredMark
           error={errors.email?.message}
           {...register("email")}
         />
 
         <FormTextarea
-          label="Message"
-          placeholder="Write your message"
+          label="বার্তা"
+          placeholder="আপনার বার্তা লিখুন"
           requiredMark
           error={errors.message?.message}
           {...register("message")}
@@ -115,7 +115,7 @@ export function ContactForm() {
             hover:shadow-[0_16px_30px_rgba(10,163,79,0.28)] disabled:cursor-not-allowed
              disabled:opacity-70 disabled:hover:translate-y-0"
         >
-          {isSubmitting ? "Sending..." : "Send Message"}
+          {isSubmitting ? "পাঠানো হচ্ছে..." : "বার্তা পাঠান"}
         </button>
       </form>
     </div>

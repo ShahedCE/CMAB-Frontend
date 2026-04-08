@@ -56,7 +56,7 @@ export function MemberCard({ member }: MemberCardProps) {
           {member.shortBio}
         </p>
         <div className="mt-6">
-          <Button href={`/members/${member.slug}`}>View Details</Button> {/*redirecting to the dynamic member page*/}
+          <Button href={`/members/${member.slug}`}>বিস্তারিত দেখুন</Button> {/*redirecting to the dynamic member page*/}
         </div>
       </div>
        

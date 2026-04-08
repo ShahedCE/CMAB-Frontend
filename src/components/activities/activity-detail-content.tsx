@@ -27,7 +27,7 @@ export function ActivityDetailContent({
           <div className="flex flex-wrap items-center gap-3">
             {activity.date ? (
               <span className="text-sm font-medium text-slate-500">
-                Date: {activity.date}
+                তারিখ: {activity.date}
               </span>
             ) : null}
           </div>

@@ -24,7 +24,7 @@ export function ActivityCard({ activity }: ActivityCardProps) {
 
           {activity.date ? (
             <span className="text-xs font-medium text-slate-500">
-              Date: {activity.date}
+              তারিখ: {activity.date} {/*Banglai koro*/}
             </span>
           ) : null}
         </div>
@@ -38,7 +38,7 @@ export function ActivityCard({ activity }: ActivityCardProps) {
         </p>
 
         <div className="mt-6">
-          <Button href={`/activities/${activity.id}`}>View Details</Button> {/*redirecting to the dynamic activity page*/}
+          <Button href={`/activities/${activity.id}`}>বিস্তারিত দেখুন</Button> {/*redirecting to the dynamic activity page*/}
         </div>
       </div>
     </article>

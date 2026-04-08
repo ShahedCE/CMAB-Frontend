@@ -103,7 +103,7 @@ export function ContactInfo() {
      
       <InfoItem
         icon={<LocationIcon />}
-        title="Main Office Address"
+        title="প্রধান কার্যালয়ের ঠিকানা"
         content={
           <p>
             Christian Medical Association Bangladesh (CMAB)
@@ -115,7 +115,7 @@ export function ContactInfo() {
 
       <InfoItem
         icon={<PhoneIcon />}
-        title="Phone / WhatsApp"
+        title="ফোন / হোয়াটসঅ্যাপ"
         content={
           <div className="flex flex-col gap-1">
             <Link
@@ -130,7 +130,7 @@ export function ContactInfo() {
               rel="noreferrer"
               className="text-slate-700 transition-colors hover:text-(--brand-green-dark)"
             >
-              Chat on WhatsApp
+              হোয়াটসঅ্যাপে চ্যাট করুন
             </Link>
           </div>
         }
@@ -138,7 +138,7 @@ export function ContactInfo() {
 
       <InfoItem
         icon={<MailIcon />}
-        title="Email Address"
+        title="ইমেইল ঠিকানা"
         content={
           <Link
             href="mailto:info@cmab.org"
@@ -151,12 +151,12 @@ export function ContactInfo() {
 
       <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
-          Social Links
+          সোশ্যাল লিংকসমূহ
         </h3>
 
         <div className="mt-4 flex items-center gap-3">
           <Link
-            href="https://facebook.com"
+            href="https://web.facebook.com/people/Christian-Medical-Association-Bangladesh/61586551870820/?_rdc=1&_rdr#"
             target="_blank"
             rel="noreferrer"
             aria-label="Facebook"
