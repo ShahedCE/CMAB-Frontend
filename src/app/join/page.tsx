@@ -7,10 +7,11 @@ export default function JoinPage() {
        <PageHero
         icon="userplus"
         title="সিএমএবি-তে যোগ দিন"
-        description="সদস্যপদের জন্য আবেদন করতে নিচের ফর্মটি পূরণ করুন। আপনার তথ্য পর্যালোচনার পর আমাদের টিম পরবর্তী ধাপ সম্পর্কে জানাবে।"
+        description="সদস্যপদের জন্য আবেদন করতে নিচের ফর্মটি পূরণ করুন। আপনার তথ্য 
+        পর্যালোচনার পর আমাদের টিম পরবর্তী ধাপ সম্পর্কে জানাবে।"
         />
 
-      <div className="mx-auto mt-10 w-full max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto mt-10 w-full max-w-6xl px-4 sm:px-6 lg:px-8">
         <JoinForm />
       </div>
     </main>

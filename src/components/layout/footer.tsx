@@ -111,8 +111,8 @@ export function Footer() {
               </h3>
 
               <p className="mt-4 text-sm leading-7 text-slate-600">
-                A clean, modern and community-centered platform with a calm
-                medical identity inspired by the CMAB logo.
+                A modern, community-focused platform reflecting the calm medical identity of CMAB.
+           
               </p>
             </div>
           </div>
