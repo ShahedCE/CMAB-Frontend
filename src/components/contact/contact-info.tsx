@@ -124,10 +124,10 @@ export function ContactInfo() {
               href="tel:+8801700000000"
               className="text-slate-700 transition-colors hover:text-(--brand-green-dark)"
             >
-              +880 1700-000000
+              +880 1700-12530000
             </Link>
             <Link
-              href="https://wa.me/8801700000000"
+              href="https://wa.me/8801712530000"
               target="_blank"
               rel="noreferrer"
               className="text-slate-700 transition-colors hover:text-(--brand-green-dark)"
