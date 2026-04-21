@@ -1,7 +1,7 @@
 export interface JoinApplicationEducation {
-  degreeName: string;
-  instituteName: string;
-  universityName: string;
+  degree: string;
+  institution: string;
+  result: string;
   passingYear: string;
 }
 

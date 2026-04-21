@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { SiteLayout } from "@/components/layout/site-layout";
+import { AppShell } from "@/components/layout/app-shell";
 
 export const metadata: Metadata = {
   title: "CMAB",
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen bg-white text-slate-900 antialiased">
-        <SiteLayout>{children}</SiteLayout>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );

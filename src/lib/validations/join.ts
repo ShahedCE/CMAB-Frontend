@@ -3,9 +3,9 @@ const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
 
 const educationEntrySchema = z.object({
-  degreeName: z.string().min(1, "ডিগ্রি/পরীক্ষার নাম আবশ্যক"),
-  instituteName: z.string().min(1, "শিক্ষা প্রতিষ্ঠানের নাম আবশ্যক"),
-  universityName: z.string().min(1, "বিশ্ববিদ্যালয়ের নাম আবশ্যক"),
+  degree: z.string().min(1, "ডিগ্রি/পরীক্ষার নাম আবশ্যক"),
+  institution: z.string().min(1, "শিক্ষা প্রতিষ্ঠানের নাম আবশ্যক"),
+  result: z.string().min(1, "বিশ্ববিদ্যালয়ের নাম আবশ্যক"),
   passingYear: z.string().min(1, "পাশের বছর আবশ্যক"),
 });
 

@@ -76,9 +76,9 @@ export function JoinForm() {
       specialty: "",
       educationEntries: [
         {
-          degreeName: "",
-          instituteName: "",
-          universityName: "",
+          degree: "",
+          institution: "",
+          result: "",
           passingYear: "",
         },
       ],
@@ -88,6 +88,7 @@ export function JoinForm() {
       workplaceTypes: [],
       declarationAccepted: false,
       notes: "",
+      profileImage: undefined,
     },
   });
   const { fields, append, remove } = useFieldArray({
@@ -132,7 +133,7 @@ export function JoinForm() {
         workplaceTypes: values.workplaceTypes,
         declarationAccepted: values.declarationAccepted,
         notes: values.notes,
-        profileImage: values.profileImage,
+        profileImage: values.profileImage, // FIX: use profileImage not profile_image_url
       };
 
       console.log("Validated application data:", payload);
@@ -373,9 +374,9 @@ export function JoinForm() {
               type="button"
               onClick={() =>
                 append({
-                  degreeName: "",
-                  instituteName: "",
-                  universityName: "",
+                  degree: "",
+                  institution: "",
+                  result: "",
                   passingYear: "",
                 })
               }
@@ -395,24 +396,24 @@ export function JoinForm() {
                     label="ডিগ্রি/পরীক্ষার নাম"
                     required
                     placeholder="যেমন: MBBS"
-                    error={errors.educationEntries?.[index]?.degreeName?.message}
-                    {...register(`educationEntries.${index}.degreeName`)}
+                    error={errors.educationEntries?.[index]?.degree?.message}
+                    {...register(`educationEntries.${index}.degree`)}
                     className="md:h-11"
                   />
                   <FormInput
                     label="শিক্ষা প্রতিষ্ঠানের নাম"
                     required
                     placeholder="প্রতিষ্ঠানের নাম লিখুন"
-                    error={errors.educationEntries?.[index]?.instituteName?.message}
-                    {...register(`educationEntries.${index}.instituteName`)}
+                    error={errors.educationEntries?.[index]?.institution?.message}
+                    {...register(`educationEntries.${index}.institution`)}
                     className="md:h-11"
                   />
                   <FormInput
                     label="বিশ্ববিদ্যালয়"
                     required
                     placeholder="বিশ্ববিদ্যালয়ের নাম লিখুন"
-                    error={errors.educationEntries?.[index]?.universityName?.message}
-                    {...register(`educationEntries.${index}.universityName`)}
+                    error={errors.educationEntries?.[index]?.result?.message}
+                    {...register(`educationEntries.${index}.result`)}
                     className="md:h-11"
                   />
                   <FormInput
@@ -575,4 +576,3 @@ export function JoinForm() {
   );
 
 }
-
