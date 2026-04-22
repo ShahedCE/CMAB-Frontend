@@ -41,11 +41,45 @@ export type JoinRequestItem = {
   createdAt: string;
   status: "pending" | "approved" | "rejected";
 };
+
+export interface MemberEducationEntry {
+  degree: string;
+  institution: string;
+  result: string;
+  passingYear: string;
+}
+
+
 export type MemberItem = {
   id: string;
   fullNameBn: string;
+  fullNameEn: string;
+  fatherName: string;
+  motherName: string;
+  dateOfBirth: string;
+  nationalId: string;
+  medicalRegNo: string;
+  membershipType: string;
   email: string;
   mobile: string;
+  phone?: string;
+  presentVillage: string;
+  presentPost: string;
+  presentThana: string;
+  presentDistrict: string;
+  permanentVillage: string;
+  permanentPost: string;
+  permanentThana: string;
+  permanentDistrict: string;
+  specialty?: string;
+  educationEntries: MemberEducationEntry[];
+  entryFee: number;
+  annualFee: number;
+  lifetimeFee: number;
+  workplaceTypes: string[];
+  declarationAccepted: boolean;
+  notes: string;
+  profileImage?: string;
   status: "active" | "inactive";
   createdAt: string;
 };
@@ -61,10 +95,21 @@ export type ContactMessageItem = {
   id: string;
   name: string;
   email: string;
-  subject: string;
   message: string;
+  status: "read" | "unread";
+  repliedByAdminId: string | null;
+  repliedAt: string | null;
   createdAt: string;
-  isRead?: boolean;
+  updatedAt: string;
+};
+type ContactsResponse = {
+  data: ContactMessageItem[];
+  meta: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
 };
 
 export type ActivityItem = {
@@ -181,9 +226,9 @@ export async function deleteMember(id: string) {
 // Contact API
 // =========================
 
-export async function getContacts() {
-  const { data } = await apiClient.get<ContactMessageItem[]>("/contact");
-  return data;
+export async function getContacts(): Promise<ContactMessageItem[]> {
+  const { data } = await apiClient.get<ContactsResponse>("/contact");
+  return data.data;
 }
 
 export async function getContactById(id: string) {

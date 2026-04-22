@@ -1,21 +1,24 @@
 "use client";
 
-import { useState } from "react";
-import { Controller, useFieldArray, useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { Controller, useFieldArray, useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 import { FormFileInput } from "@/components/join/form-file-input";
 import { FormInput } from "@/components/join/form-input";
 import { FormTextarea } from "@/components/join/form-textarea";
 import {
-  joinApplicationSchema,
-  type JoinApplicationFormValues,
-} from "@/lib/validations/join";
-import { createMember } from "@/lib/admin/dashboard-api";
+    
+    editMemberSchema,
+  type EditMemberFormValues
+} from "@/lib/validations/edit-member";
+import { getMemberById, updateMember } from "@/lib/admin/dashboard-api";
 
-export default function AddMemberForm() {
+export default function EditMemberForm() {
   const router = useRouter();
+  const params = useParams<{ id: string }>();
+  const memberId = params.id;
 
   const workplaceOptions = [
     "সরকারি",
@@ -27,6 +30,7 @@ export default function AddMemberForm() {
 
   const [submitSuccess, setSubmitSuccess] = useState("");
   const [submitError, setSubmitError] = useState("");
+  const [pageLoading, setPageLoading] = useState(true);
 
   const {
     register,
@@ -35,8 +39,8 @@ export default function AddMemberForm() {
     reset,
     watch,
     formState: { errors, isSubmitting },
-  } = useForm<JoinApplicationFormValues>({
-    resolver: zodResolver(joinApplicationSchema),
+  } = useForm<EditMemberFormValues>({
+    resolver: zodResolver(editMemberSchema),
     mode: "onChange",
     defaultValues: {
       fullNameBn: "",
@@ -77,7 +81,7 @@ export default function AddMemberForm() {
     },
   });
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, replace } = useFieldArray({
     control,
     name: "educationEntries",
   });
@@ -87,7 +91,79 @@ export default function AddMemberForm() {
   const lifetimeFee = Number(watch("lifetimeFee") || 0);
   const totalFee = entryFee + annualFee + lifetimeFee;
 
-  const onSubmit = async (values: JoinApplicationFormValues) => {
+  useEffect(() => {
+    const loadMember = async () => {
+      if (!memberId) return;
+
+      setPageLoading(true);
+      setSubmitError("");
+
+      try {
+        const data = await getMemberById(memberId);
+
+        const educationEntries =
+        Array.isArray(data?.educationEntries) && data.educationEntries.length > 0
+          ? data.educationEntries.map((edu: any) => ({
+              degree: edu.degree || "",
+              institution: edu.institution || "",
+              result: edu.result || "",
+              passingYear: edu.passingYear || "",
+            }))
+          : [
+              {
+                degree: "",
+                institution: "",
+                result: "",
+                passingYear: "",
+              },
+            ];
+
+        reset({
+          fullNameBn: data?.fullNameBn || "",
+          fullNameEn: data?.fullNameEn || "",
+          fatherName: data?.fatherName || "",
+          motherName: data?.motherName || "",
+          dateOfBirth: data?.dateOfBirth ? String(data.dateOfBirth).slice(0, 10) : "",
+          nationalId: data?.nationalId || "",
+          medicalRegNo: data?.medicalRegNo || "",
+          membershipType: data?.membershipType || "",
+          email: data?.email || "",
+          mobile: data?.mobile || "",
+          phone: data?.phone || "",
+          presentVillage: data?.presentVillage || "",
+          presentPost: data?.presentPost || "",
+          presentThana: data?.presentThana || "",
+          presentDistrict: data?.presentDistrict || "",
+          permanentVillage: data?.permanentVillage || "",
+          permanentPost: data?.permanentPost || "",
+          permanentThana: data?.permanentThana || "",
+          permanentDistrict: data?.permanentDistrict || "",
+          specialty: data?.specialty || "",
+          educationEntries,
+          entryFee: Number(data?.entryFee ?? 0),
+          annualFee: Number(data?.annualFee ?? 0),
+          lifetimeFee: Number(data?.lifetimeFee ?? 0),
+          workplaceTypes: Array.isArray(data?.workplaceTypes) ? data.workplaceTypes : [],
+          declarationAccepted: Boolean(data?.declarationAccepted),
+          notes: data?.notes || "",
+          profileImage: undefined,
+        });
+
+        replace(educationEntries);
+      } catch (error: any) {
+        console.error(error);
+        setSubmitError(error?.response?.data?.message || "মেম্বারের তথ্য লোড করা যায়নি।");
+      } finally {
+        setPageLoading(false);
+      }
+    };
+
+    loadMember();
+  }, [memberId, reset, replace]);
+
+  const onSubmit: SubmitHandler<EditMemberFormValues> = async (values) => {
+    if (!memberId) return;
+
     setSubmitSuccess("");
     setSubmitError("");
 
@@ -98,9 +174,6 @@ export default function AddMemberForm() {
       formData.append("fullNameEn", values.fullNameEn);
       formData.append("fatherName", values.fatherName);
       formData.append("motherName", values.motherName);
-      formData.append("dateOfBirth", values.dateOfBirth);
-      formData.append("nationalId", values.nationalId);
-      formData.append("medicalRegNo", values.medicalRegNo);
       formData.append("membershipType", values.membershipType);
       formData.append("email", values.email);
       formData.append("mobile", values.mobile);
@@ -117,57 +190,40 @@ export default function AddMemberForm() {
       formData.append("entryFee", String(Number(values.entryFee ?? 0)));
       formData.append("annualFee", String(Number(values.annualFee ?? 0)));
       formData.append("lifetimeFee", String(Number(values.lifetimeFee ?? 0)));
-      formData.append("declarationAccepted", String(values.declarationAccepted));
       formData.append("notes", values.notes || "");
-
-      formData.append("educationEntries", JSON.stringify(values.educationEntries));
       formData.append("workplaceTypes", JSON.stringify(values.workplaceTypes || []));
+ 
 
-      if (values.profileImage && values.profileImage instanceof File) {
+      if (values.profileImage instanceof File) {
         formData.append("profileImage", values.profileImage);
       }
 
-      await createMember(formData); // Calling The API Function
+      await updateMember(memberId, formData); //Calling the API function from admin/dashboard-api
 
-      setSubmitSuccess("মেম্বার সফলভাবে যোগ করা হয়েছে।");
-      reset();
+      setSubmitSuccess("মেম্বারের তথ্য সফলভাবে আপডেট করা হয়েছে।");
+
       setTimeout(() => {
         router.push("/admin/members");
       }, 800);
     } catch (error: any) {
-        console.error(error);
-        setSubmitError(
-          error?.response?.data?.message || 
-          "মেম্বার যোগ করতে সমস্যা হয়েছে।"
-        );
-      }
+      console.error(error);
+      setSubmitError(
+        error?.response?.data?.message || "মেম্বারের তথ্য আপডেট করতে সমস্যা হয়েছে।"
+      );
+    }
   };
 
-  // This function solves the event.target.files typing/compat issue
-  function handleProfileImageChange(eventOrFile: any, onChange: (file: File | null) => void) {
-    // Accept both direct file and input change event
-    if (eventOrFile && typeof eventOrFile === "object") {
-      if ("target" in eventOrFile && eventOrFile.target && eventOrFile.target.files) {
-        // Normal event from <input type="file" />. e.g. event: React.ChangeEvent<HTMLInputElement>
-        const files = (eventOrFile.target as HTMLInputElement).files;
-        onChange(files && files[0] ? files[0] : null);
-      } else if (eventOrFile instanceof File) {
-        onChange(eventOrFile);
-      } else {
-        onChange(null);
-      }
-    } else {
-      onChange(null);
-    }
+  if (pageLoading) {
+    return <p className="text-sm text-slate-500">মেম্বারের তথ্য লোড হচ্ছে...</p>;
   }
 
   return (
     <div className="rounded-4xl border border-slate-200 bg-white shadow-sm sm:p-8 lg:p-10">
       <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-800">নতুন মেম্বার যোগ করুন</h1>
+          <h1 className="text-2xl font-bold text-slate-800">মেম্বারের তথ্য সম্পাদনা করুন</h1>
           <p className="mt-2 text-sm text-slate-600">
-            নিচের ফর্ম পূরণ করে নতুন মেম্বার যুক্ত করুন।
+            নিচের ফর্ম থেকে মেম্বারের তথ্য আপডেট করুন।
           </p>
         </div>
 
@@ -179,10 +235,6 @@ export default function AddMemberForm() {
           ফিরে যান
         </button>
       </div>
-
-      <p className="text-xs">
-        <span className="text-red-500">*</span> চিহ্নিত ঘরগুলো বাধ্যতামূলক।
-      </p>
 
       {submitSuccess ? (
         <p className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
@@ -219,6 +271,7 @@ export default function AddMemberForm() {
             required
             error={errors.dateOfBirth?.message}
             {...register("dateOfBirth")}
+            readOnly
           />
         </div>
 
@@ -246,6 +299,7 @@ export default function AddMemberForm() {
             placeholder="NID নম্বর লিখুন"
             error={errors.nationalId?.message}
             {...register("nationalId")}
+            readOnly
           />
           <FormInput
             label="চিকিৎসা নিবন্ধন নম্বর"
@@ -253,6 +307,7 @@ export default function AddMemberForm() {
             placeholder="রেজিস্ট্রেশন নম্বর লিখুন"
             error={errors.medicalRegNo?.message}
             {...register("medicalRegNo")}
+            readOnly
           />
         </div>
 
@@ -268,15 +323,9 @@ export default function AddMemberForm() {
             }`}
             {...register("membershipType")}
           >
-           <option value="">সদস্যের ধরন নির্বাচন করুন</option>
-            <option value="daktar">ডাক্তার</option>
-            <option value="nurse">নার্স</option>
-            <option value="chatro-chatri">ছাত্র-ছাত্রী</option>
-            <option value="paramedic">প্যারামেডিক</option>
-            <option value="technician">টেকনিশিয়ান</option>
-            <option value="hospital-training-staff">হাসপাতাল প্রশিক্ষণ কর্মী</option>
-            <option value="hospital-attendant">হাসপাতাল পালক</option>
-            <option value="purohit">পুরোহিত</option>
+            <option value="">সদস্যের ধরন নির্বাচন করুন</option>
+            <option value="general">General Member</option>
+            <option value="lifetime">Lifetime Member</option>
           </select>
           {errors.membershipType?.message ? (
             <p className="text-sm text-red-600">{errors.membershipType.message}</p>
@@ -335,20 +384,15 @@ export default function AddMemberForm() {
           {...register("specialty")}
         />
 
+        {/* শিক্ষাগত যোগ্যতা: disable all fields & controls */}
         <div className="rounded-3xl border border-slate-200 p-5">
           <div className="mb-4 flex items-center justify-between gap-3">
             <h2 className="text-lg font-bold text-slate-800">শিক্ষাগত যোগ্যতা</h2>
             <button
               type="button"
-              onClick={() =>
-                append({
-                  degree: "",
-                  institution: "",
-                  result: "",
-                  passingYear: "",
-                })
-              }
-              className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+              className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-400 bg-slate-50 cursor-not-allowed"
+              disabled
+              tabIndex={-1}
             >
               + আরও যোগ করুন
             </button>
@@ -356,14 +400,15 @@ export default function AddMemberForm() {
 
           <div className="space-y-5">
             {fields.map((field, index) => (
-              <div key={field.id} className="rounded-2xl border border-slate-200 p-4">
+              <div key={field.id} className="rounded-2xl border border-slate-200 p-4 opacity-70 pointer-events-none">
                 <div className="mb-4 flex items-center justify-between">
                   <p className="text-sm font-semibold text-slate-700">শিক্ষাগত তথ্য #{index + 1}</p>
                   {fields.length > 1 ? (
                     <button
                       type="button"
-                      onClick={() => remove(index)}
-                      className="text-sm font-semibold text-red-600"
+                      className="text-sm font-semibold text-red-300 cursor-not-allowed"
+                      disabled
+                      tabIndex={-1}
                     >
                       Remove
                     </button>
@@ -376,24 +421,28 @@ export default function AddMemberForm() {
                     required
                     error={errors.educationEntries?.[index]?.degree?.message}
                     {...register(`educationEntries.${index}.degree`)}
+                    readOnly
                   />
                   <FormInput
                     label="ইনস্টিটিউটের নাম"
                     required
                     error={errors.educationEntries?.[index]?.institution?.message}
                     {...register(`educationEntries.${index}.institution`)}
+                    readOnly
                   />
                   <FormInput
                     label="বিশ্ববিদ্যালয়ের নাম"
                     required
                     error={errors.educationEntries?.[index]?.result?.message}
                     {...register(`educationEntries.${index}.result`)}
+                    readOnly
                   />
                   <FormInput
                     label="পাসের বছর"
                     required
                     error={errors.educationEntries?.[index]?.passingYear?.message}
                     {...register(`educationEntries.${index}.passingYear`)}
+                    readOnly
                   />
                 </div>
               </div>
@@ -404,9 +453,9 @@ export default function AddMemberForm() {
         <div className="rounded-3xl border border-slate-200 p-5">
           <h2 className="mb-4 text-lg font-bold text-slate-800">ফি সংক্রান্ত তথ্য</h2>
           <div className="grid gap-5 md:grid-cols-3">
-            <FormInput type="number" label="এন্ট্রি ফি" error={errors.entryFee?.message} {...register("entryFee")} />
-            <FormInput type="number" label="বার্ষিক ফি" error={errors.annualFee?.message} {...register("annualFee")} />
-            <FormInput type="number" label="লাইফটাইম ফি" error={errors.lifetimeFee?.message} {...register("lifetimeFee")} />
+            <FormInput type="number" label="এন্ট্রি ফি" error={errors.entryFee?.message} {...register("entryFee", { valueAsNumber: true })} />
+            <FormInput type="number" label="বার্ষিক ফি" error={errors.annualFee?.message} {...register("annualFee", { valueAsNumber: true })} />
+            <FormInput type="number" label="লাইফটাইম ফি" error={errors.lifetimeFee?.message} {...register("lifetimeFee", { valueAsNumber: true })} />
           </div>
 
           <div className="mt-4 rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
@@ -460,20 +509,16 @@ export default function AddMemberForm() {
           name="profileImage"
           render={({ field: { onChange } }) => (
             <FormFileInput
-              label="প্রোফাইল ছবি"
-              required
+              label="প্রোফাইল ছবি (নতুন ছবি দিতে চাইলে নির্বাচন করুন)"
               accept="image/*"
               error={(errors.profileImage as { message?: string } | undefined)?.message}
-              onChange={event => handleProfileImageChange(event, onChange)}
-            />
+              onChange={(file) => onChange(file || undefined)}            />
           )}
         />
 
-        <label className="flex items-start gap-3 rounded-2xl border border-slate-200 px-4 py-4 text-sm text-slate-700">
-          <input type="checkbox" className="mt-1" {...register("declarationAccepted")} />
-          <span>
-            আমি ঘোষণা করছি যে, উপরে দেওয়া সকল তথ্য সঠিক।
-          </span>
+        <label className="flex items-start gap-3 rounded-2xl border border-slate-200 px-4 py-4 text-sm text-slate-700 opacity-60 pointer-events-none">
+          <input type="checkbox" className="mt-1" {...register("declarationAccepted")} disabled tabIndex={-1} />
+          <span>আমি ঘোষণা করছি যে, উপরে দেওয়া সকল তথ্য সঠিক।</span>
         </label>
         {errors.declarationAccepted?.message ? (
           <p className="text-sm text-red-600">{errors.declarationAccepted.message}</p>
@@ -493,7 +538,7 @@ export default function AddMemberForm() {
             disabled={isSubmitting}
             className="rounded-2xl bg-[var(--brand-green)] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70"
           >
-            {isSubmitting ? "সংরক্ষণ হচ্ছে..." : "মেম্বার সংরক্ষণ করুন"}
+            {isSubmitting ? "আপডেট হচ্ছে..." : "তথ্য আপডেট করুন"}
           </button>
         </div>
       </form>

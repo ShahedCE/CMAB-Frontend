@@ -35,10 +35,10 @@ export default function MembersPage() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [form, setForm] = useState<MemberPayload>(emptyForm);
   const [isSaving, setIsSaving] = useState(false);
+  const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const route= useRouter();
 
   const loadMembers = async () => {
     setLoading(true);
@@ -55,22 +55,7 @@ export default function MembersPage() {
     loadMembers();
   }, []);
 
-  const openCreate = () => {
-    setEditingId(null);
-    setForm(emptyForm);
-    setIsModalOpen(true);
-  };
-
-  const openEdit = (item: MemberItem) => {
-    setEditingId(item.id);
-    setForm({
-      fullNameBn: item.fullNameBn,
-      email: item.email,
-      mobile: item.mobile,
-      status: item.status,
-    });
-    setIsModalOpen(true);
-  };
+  
 
   // Convert plain MemberPayload to FormData for API
   const toFormData = (data: MemberPayload) => {
@@ -83,26 +68,27 @@ export default function MembersPage() {
     return fd;
   };
 
+  const confirmDelete = async () => {
+    if (!deleteId) return;
+  
+    setIsDeleting(true);
+    try {
+      await deleteMember(deleteId);
+      setItems((prev) => prev.filter((item) => item.id !== deleteId));
+      setDeleteId(null);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setMessage("");
     setError("");
     setIsSaving(true);
-    try {
-      if (editingId) {
-        await updateMember(editingId, toFormData(form));
-        setMessage("Member updated successfully.");
-      } else {
-        await createMember(toFormData(form));
-        setMessage("Member created successfully.");
-      }
-      setIsModalOpen(false);
-      await loadMembers();
-    } catch {
-      setError("Member save failed. Please try again.");
-    } finally {
-      setIsSaving(false);
-    }
+    
   };
 
   const onDelete = async (id: string) => {
@@ -192,102 +178,66 @@ export default function MembersPage() {
                   <td className="px-4 py-3">{formatUtcDate(item.createdAt)}</td>
                   <td className="px-4 py-3">
                     <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => router.push(`/admin/members/edit/${item.id}`)}
+                      className="rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                    >
+                      Edit
+                    </button>
                       <button
                         type="button"
-                        onClick={() => openEdit(item)}
-                        className="rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold"
+                        className="rounded-lg bg-green-100 border border-slate-200 px-3 py-1.5 text-xs font-semibold"
                       >
-                        Edit
+                        {item.status === "active" ? "Inactive" : "Active"}
                       </button>
+                 
                       <button
                         type="button"
-                        onClick={() => onToggleStatus(item)}
-                        className="rounded-lg border border-amber-200 px-3 py-1.5 text-xs font-semibold text-amber-700"
-                      >
-                        {item.status === "active" ? "Set Inactive" : "Set Active"}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => onDelete(item.id)}
-                        className="rounded-lg border border-red-200 px-3 py-1.5 text-xs font-semibold text-red-700"
+                        onClick={() => setDeleteId(item.id)}
+                        className="rounded-xl border border-red-200 px-3 py-2 text-sm font-semibold text-red-700"
                       >
                         Delete
                       </button>
-                    </div>
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+                              {deleteId ? (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+            <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
+              <h2 className="text-lg font-bold text-slate-900">Delete Member</h2>
+              <p className="mt-2 text-sm text-slate-600">
+                Are you sure you want to delete this member?
+              </p>
 
-      {isModalOpen ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-          <div className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white p-5 shadow-xl">
-            <h2 className="text-lg font-bold text-slate-900">{editingId ? "Update Member" : "Create Member"}</h2>
-            <form onSubmit={onSubmit} className="mt-4 space-y-4">
-              <label className="block space-y-1 text-sm">
-                <span className="font-semibold text-slate-800">Name (বাংলা)</span>
-                <input
-                  value={form.fullNameBn}
-                  onChange={(e) => setForm((prev) => ({ ...prev, fullNameBn: e.target.value }))}
-                  required
-                  className="h-11 w-full rounded-xl border border-slate-200 px-3 outline-none focus:border-(--brand-green)"
-                />
-              </label>
-              <label className="block space-y-1 text-sm">
-                <span className="font-semibold text-slate-800">Email</span>
-                <input
-                  type="email"
-                  value={form.email}
-                  onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
-                  required
-                  className="h-11 w-full rounded-xl border border-slate-200 px-3 outline-none focus:border-(--brand-green)"
-                />
-              </label>
-              <label className="block space-y-1 text-sm">
-                <span className="font-semibold text-slate-800">Mobile</span>
-                <input
-                  value={form.mobile}
-                  onChange={(e) => setForm((prev) => ({ ...prev, mobile: e.target.value }))}
-                  required
-                  className="h-11 w-full rounded-xl border border-slate-200 px-3 outline-none focus:border-(--brand-green)"
-                />
-              </label>
-              <label className="block space-y-1 text-sm">
-                <span className="font-semibold text-slate-800">Status</span>
-                <select
-                  value={form.status}
-                  onChange={(e) =>
-                    setForm((prev) => ({ ...prev, status: e.target.value as "active" | "inactive" }))
-                  }
-                  className="h-11 w-full rounded-xl border border-slate-200 px-3 outline-none focus:border-(--brand-green)"
-                >
-                  <option value="active">active</option>
-                  <option value="inactive">inactive</option>
-                </select>
-              </label>
-              <div className="flex justify-end gap-2">
+              <div className="mt-6 flex justify-end gap-3">
                 <button
                   type="button"
-                  onClick={() => setIsModalOpen(false)}
+                  onClick={() => setDeleteId(null)}
                   className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700"
                 >
-                  Cancel
+                  No
                 </button>
+
                 <button
-                  type="submit"
-                  disabled={isSaving}
-                  className="rounded-xl bg-(--brand-green) px-4 py-2 text-sm font-semibold text-white"
-                >
-                  {isSaving ? "Saving..." : "Save"}
-                </button>
+                  type="button"
+                  onClick={confirmDelete}
+                  disabled={isDeleting}
+                  className="rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-60"
+                    >
+                      {isDeleting ? "Deleting..." : "Yes, Delete"}
+                    </button>
+                  </div>
+                </div>
               </div>
-            </form>
-          </div>
-        </div>
-      ) : null}
+            ) : null}
+            
+            </div>
+             </td>
+           </tr>
+          ))
+       )}
+      </tbody>
+     </table>
+   </div>
+
     </div>
   );
 }
