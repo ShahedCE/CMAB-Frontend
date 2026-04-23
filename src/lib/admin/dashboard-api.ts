@@ -115,25 +115,51 @@ type ContactsResponse = {
 export type ActivityItem = {
   id: string;
   title: string;
+  description: string;
+  fullDescription: string;
+  image: string;
   date: string;
-  location?: string;
+  createdByAdminId: string | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type ActivityPayload = {
   title: string;
   date: string;
-  location?: string;
+  description?: string;
+  fullDescription?: string;
+  image?: File | null;
+};
+export type ActivityListResponse = {
+  data: ActivityItem[];
+  meta: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
 };
 
 // =========================
 // Notifications API
 // =========================
 
-export async function getNotifications(page = 1, limit = 10) {
+export async function getNotifications(
+  page = 1,
+  limit = 10
+): Promise<NotificationItem[]> {
   const { data } = await apiClient.get("/notifications", {
     params: { page, limit },
   });
-  return data;
+
+  if (Array.isArray(data)) return data;
+  if (Array.isArray(data?.data)) return data.data;
+  if (Array.isArray(data?.items)) return data.items;
+  if (Array.isArray(data?.notifications)) return data.notifications;
+
+  console.log("Unexpected notifications response:", data);
+  return [];
 }
 
 export async function getUnreadNotificationCount() {
@@ -252,41 +278,39 @@ export async function createContact(payload: {
   return data;
 }
 
+
 // =========================
 // Activities API
 // =========================
 
-export async function getActivities(params?: Record<string, unknown>) {
-  const { data } = await apiClient.get<ActivityItem[]>("/activities", {
+export async function getActivities(
+  params?: Record<string, unknown>
+): Promise<ActivityListResponse> {
+  const { data } = await apiClient.get<ActivityListResponse>("/activities", {
     params,
   });
   return data;
 }
 
-export async function getActivityById(id: string) {
+export async function getActivityById(id: string): Promise<ActivityItem> {
   const { data } = await apiClient.get<ActivityItem>(`/activities/${id}`);
   return data;
 }
 
-export async function createActivity(formData: FormData) {
-  const { data } = await apiClient.post<ActivityItem>("/activities", formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+export async function createActivity(formData: FormData): Promise<ActivityItem> {
+  const { data } = await apiClient.post<ActivityItem>("/activities", formData);
   return data;
 }
 
 export async function updateActivity(id: string, formData: FormData) {
-  const { data } = await apiClient.patch<ActivityItem>(`/activities/${id}`, formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  const { data } = await apiClient.patch(`/activities/${id}`, formData);
   return data;
 }
 
-export async function deleteActivity(id: string) {
+export async function deleteActivity(id: string): Promise<{
+  success: boolean;
+  message: string;
+}> {
   const { data } = await apiClient.delete(`/activities/${id}`);
   return data;
 }

@@ -17,7 +17,11 @@ async function forward(request: NextRequest, params: { path: string[] }) {
   if (incomingContentType) headers.set("content-type", incomingContentType);
 
   const method = request.method.toUpperCase();
-  const body = method === "GET" || method === "HEAD" ? undefined : await request.text();
+
+  const body =
+    method === "GET" || method === "HEAD"
+      ? undefined
+      : await request.arrayBuffer();
 
   try {
     const response = await fetch(url, {
@@ -27,37 +31,54 @@ async function forward(request: NextRequest, params: { path: string[] }) {
       cache: "no-store",
     });
 
-    const responseText = await response.text();
-    return new NextResponse(responseText, {
+    const responseBuffer = await response.arrayBuffer();
+
+    return new NextResponse(responseBuffer, {
       status: response.status,
       headers: {
-        "content-type": response.headers.get("content-type") || "application/json",
+        "content-type":
+          response.headers.get("content-type") || "application/json",
       },
     });
   } catch {
     return NextResponse.json(
       { message: "Backend যোগাযোগ করা যাচ্ছে না। সার্ভার চলছে কিনা দেখুন।" },
-      { status: 502 },
+      { status: 502 }
     );
   }
 }
 
-export async function GET(request: NextRequest, context: { params: Promise<{ path: string[] }> }) {
+export async function GET(
+  request: NextRequest,
+  context: { params: Promise<{ path: string[] }> }
+) {
   return forward(request, await context.params);
 }
 
-export async function POST(request: NextRequest, context: { params: Promise<{ path: string[] }> }) {
+export async function POST(
+  request: NextRequest,
+  context: { params: Promise<{ path: string[] }> }
+) {
   return forward(request, await context.params);
 }
 
-export async function PATCH(request: NextRequest, context: { params: Promise<{ path: string[] }> }) {
+export async function PATCH(
+  request: NextRequest,
+  context: { params: Promise<{ path: string[] }> }
+) {
   return forward(request, await context.params);
 }
 
-export async function PUT(request: NextRequest, context: { params: Promise<{ path: string[] }> }) {
+export async function PUT(
+  request: NextRequest,
+  context: { params: Promise<{ path: string[] }> }
+) {
   return forward(request, await context.params);
 }
 
-export async function DELETE(request: NextRequest, context: { params: Promise<{ path: string[] }> }) {
+export async function DELETE(
+  request: NextRequest,
+  context: { params: Promise<{ path: string[] }> }
+) {
   return forward(request, await context.params);
 }

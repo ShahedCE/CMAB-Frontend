@@ -1,5 +1,6 @@
 import axios from "axios";
 import { clearAuthSession, getAccessToken } from "@/lib/admin/auth-storage";
+
 const AUTH_ROUTES = [
   "/auth/login",
   "/auth/forgot-password",
@@ -14,9 +15,6 @@ function isAuthRoute(url?: string) {
 
 export const apiClient = axios.create({
   baseURL: "/api/admin",
-  headers: {
-    "Content-Type": "application/json",
-  },
 });
 
 apiClient.interceptors.request.use((config) => {
@@ -43,5 +41,5 @@ apiClient.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  },
+  }
 );
