@@ -70,6 +70,29 @@ export default function NotificationsPage() {
         {!loading && items.length === 0 ? (
           <p className="text-sm text-slate-500">No notifications found.</p>
         ) : null}
+        {!loading && items.length > 0 ? (
+          <div className="flex items-center gap-4">
+            <span
+              className="inline-flex items-center rounded px-2 py-1 text-xs font-semibold"
+              style={{ backgroundColor: "#dcfce7", color: "#166534" }}
+            >
+              Unread:&nbsp;
+              {
+                items.filter((item) => !item.isRead).length
+              }
+            </span>
+            <span
+              className="inline-flex items-center rounded px-2 py-1 text-xs font-semibold"
+              style={{ backgroundColor: "#f1f5f9", color: "#334155" }}
+            >
+              Read:&nbsp;
+              {
+                items.filter((item) => item.isRead).length
+              }
+            </span>
+          </div>
+        ) : null}
+   
 
         {items.map((item) => (
           <article key={item.id} className="rounded-2xl border border-slate-200 p-4">
@@ -92,7 +115,7 @@ export default function NotificationsPage() {
                 type="button"
                 onClick={() => onMarkRead(item.id)}
                 disabled={actionId === item.id}
-                className="mt-3 rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-700"
+                className="mt-3 rounded-lg bg-green-200 hover:bg-green-300 border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-700"
               >
                 {actionId === item.id ? "Updating..." : "Mark as Read"}
               </button>

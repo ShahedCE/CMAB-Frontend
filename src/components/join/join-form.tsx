@@ -10,79 +10,7 @@ import {
   joinApplicationSchema,
   type JoinApplicationFormValues,
 } from "@/lib/validations/join";
-import { JoinFormValues } from "@/types/join";
 import { createJoinRequest } from "@/lib/admin/dashboard-api";
-
-const onSubmit = async (values: JoinFormValues) => {
-  try {
-    const formData = new FormData();
-
-    // 🔹 basic fields
-    formData.append("fullNameBn", values.fullNameBn);
-    formData.append("fullNameEn", values.fullNameEn);
-    formData.append("fatherName", values.fatherName);
-    formData.append("motherName", values.motherName);
-    formData.append("dateOfBirth", values.dateOfBirth);
-    formData.append("nationalId", values.nationalId);
-    formData.append("medicalRegNo", values.medicalRegNo);
-    formData.append("membershipType", values.membershipType);
-
-    formData.append("email", values.email);
-    formData.append("mobile", values.mobile);
-    if (values.phone) formData.append("phone", values.phone);
-
-    // 🔹 address
-    formData.append("presentVillage", values.presentVillage);
-    formData.append("presentPost", values.presentPost);
-    formData.append("presentThana", values.presentThana);
-    formData.append("presentDistrict", values.presentDistrict);
-
-    formData.append("permanentVillage", values.permanentVillage);
-    formData.append("permanentPost", values.permanentPost);
-    formData.append("permanentThana", values.permanentThana);
-    formData.append("permanentDistrict", values.permanentDistrict);
-
-    // 🔹 optional
-    if (values.specialty) formData.append("specialty", values.specialty);
-
-    // 🔹 education array (🔥 important)
-    formData.append(
-      "educationEntries",
-      JSON.stringify(values.educationEntries)
-    );
-
-    // 🔹 workplaceTypes
-    formData.append(
-      "workplaceTypes",
-      JSON.stringify(values.workplaceTypes)
-    );
-
-    formData.append("entryFee", values.entryFee);
-    formData.append("annualFee", values.annualFee);
-    formData.append("lifetimeFee", values.lifetimeFee);
-
-    formData.append(
-      "declarationAccepted",
-      String(values.declarationAccepted)
-    );
-
-    if (values.notes) formData.append("notes", values.notes);
-
-    // 🔥 image
-    if (values.profileImage) {
-      formData.append("profileImage", values.profileImage);
-    }
-
-    // 🚀 API call
-    await createJoinRequest(formData);
-
-    alert("Application submitted successfully ✅");
-
-  } catch (err) {
-    console.error(err);
-    alert("Submission failed ❌");
-  }
-};
 
 export default function JoinFormWithHeader() {
   return (
@@ -163,23 +91,27 @@ export function JoinForm() {
       profileImage: undefined,
     },
   });
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "educationEntries",
   });
+
   const entryFee = Number(watch("entryFee") || 0);
   const annualFee = Number(watch("annualFee") || 0);
   const lifetimeFee = Number(watch("lifetimeFee") || 0);
   const totalFee = entryFee + annualFee + lifetimeFee;
 
   const onSubmit = async (payload: any) => {
+    setSubmitSuccess("");
+    setSubmitError("");
     try {
       const formData = new FormData();
-  
+
       // 🔹 simple fields
       Object.entries(payload).forEach(([key, value]) => {
         if (value === undefined || value === null) return;
-  
+
         // 🔥 special cases handle নিচে
         if (key === "educationEntries" || key === "workplaceTypes") {
           formData.append(key, JSON.stringify(value));
@@ -189,31 +121,70 @@ export function JoinForm() {
           formData.append(key, String(value));
         }
       });
-  
-      await createJoinRequest(formData); 
-  
+
+      await createJoinRequest(formData);
+
+      // Show bangla success message just top of the submission button
+      setSubmitSuccess("✅ আবেদন সফলভাবে জমা হয়েছে। ধন্যবাদ! আপনার আবেদন প্রক্রিয়া শেষে ই-মেইল/ফোনে জানানো হবে।");
+
+      // Clear input fields by resetting form
+      reset({
+        fullNameBn: "",
+        fullNameEn: "",
+        fatherName: "",
+        motherName: "",
+        dateOfBirth: "",
+        nationalId: "",
+        medicalRegNo: "",
+        membershipType: "",
+        email: "",
+        mobile: "",
+        phone: "",
+        presentVillage: "",
+        presentPost: "",
+        presentThana: "",
+        presentDistrict: "",
+        permanentVillage: "",
+        permanentPost: "",
+        permanentThana: "",
+        permanentDistrict: "",
+        specialty: "",
+        educationEntries: [
+          {
+            degree: "",
+            institution: "",
+            result: "",
+            passingYear: "",
+          },
+        ],
+        entryFee: 0,
+        annualFee: 0,
+        lifetimeFee: 0,
+        workplaceTypes: [],
+        declarationAccepted: false,
+        notes: "",
+        profileImage: undefined,
+      });
+
     } catch (err) {
       console.error(err);
+      setSubmitError("আবেদন জমা দিতে ব্যর্থ হয়েছে, অনুগ্রহ করে আবার চেষ্টা করুন।");
     }
   };
-
 
   return (
     <div className="rounded-4xl border border-slate-200 bg-white  shadow-sm sm:p-8 lg:p-10">
       {/* Association Name and Address */}
       <div className="mb-8">
         <h2 className="text-2xl font-bold text-center text-slate-800">
-        খ্রিস্টিয়ান মেডিক্যাল অ্যাসোসিয়েশন বাংলাদেশ (সিএমএবি)
+          খ্রিস্টিয়ান মেডিক্যাল অ্যাসোসিয়েশন বাংলাদেশ (সিএমএবি)
         </h2>
         <p className="text-center text-sm text-slate-600 mt-2">
-        সরকারি নিবন্ধন নং: ঢ ০১২২
-
-
-
+          সরকারি নিবন্ধন নং: ঢ ০১২২
         </p>
         <p className="text-center text-sm text-slate-600 mt-2">
-        জাতীয় চার্চ পরিষদ, বাংলাদেশ ।
-        ৩৯৫ নিউ ইসকাটন রোড, ঢাকা-১২১৭
+          জাতীয় চার্চ পরিষদ, বাংলাদেশ ।
+          ৩৯৫ নিউ ইসকাটন রোড, ঢাকা-১২১৭
         </p>
       </div>
 
@@ -297,15 +268,9 @@ export function JoinForm() {
             {...register("membershipType")}
           >
             <option value="">সদস্যের ধরন নির্বাচন করুন</option>
-            <option value="daktar">ডাক্তার</option>
-            <option value="nurse">নার্স</option>
-            <option value="chatro-chatri">ছাত্র-ছাত্রী</option>
-            <option value="paramedic">প্যারামেডিক</option>
-            <option value="technician">টেকনিশিয়ান</option>
-            <option value="hospital-training-staff">হাসপাতাল প্রশিক্ষণ কর্মী</option>
-            <option value="hospital-attendant">হাসপাতাল পালক</option>
-            <option value="purohit">পুরোহিত</option>
-       
+            <option value="general">সাধারণ সদস্য</option>
+            <option value="light">লাইট সদস্য</option>
+            <option value="irregular">অনিয়মিত সদস্য</option>
           </select>
           {errors.membershipType ? (
             <p className="text-sm text-red-600">{errors.membershipType.message}</p>
@@ -436,7 +401,6 @@ export function JoinForm() {
             </button>
           </div>
 
-        
           <div className="mt-3 grid gap-3">
             {fields.map((field, index) => (
               <div key={field.id} className="rounded-xl border border-slate-200 bg-white p-3">
@@ -536,7 +500,6 @@ export function JoinForm() {
           <p className="mt-2 text-xs text-slate-600">
             প্রদত্ত অর্থপ্রদান সংক্রান্ত তথ্য যাচাই করা হবে। নিশ্চিত হয়ে তথ্য প্রদান করুন।
           </p>
-
         </section>
 
         <fieldset className="space-y-3 rounded-2xl border border-slate-200 p-4">
@@ -598,14 +561,15 @@ export function JoinForm() {
           <p className="text-sm text-red-600">{errors.declarationAccepted.message}</p>
         ) : null}
 
+        {/* Success message: Just above the button */}
         {submitSuccess ? (
-          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700 mb-2">
             {submitSuccess}
           </div>
         ) : null}
 
         {submitError ? (
-          <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 mb-2">
             {submitError}
           </div>
         ) : null}
@@ -624,5 +588,4 @@ export function JoinForm() {
       </form>
     </div>
   );
-
 }

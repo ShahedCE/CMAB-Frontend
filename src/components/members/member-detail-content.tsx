@@ -2,6 +2,20 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import type { Member } from "@/types/member";
 
+// 🟢 Styles by membership category
+const categoryStyles: Record<string, string> = {
+  general: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
+  light: "bg-sky-50 text-sky-700 ring-1 ring-sky-200",
+  irregular: "bg-amber-50 text-amber-700 ring-1 ring-amber-200",
+};
+
+// 🔥 same mapping logic as card
+const categoryLabels: Record<string, string> = {
+  general: "সাধারণ সদস্য",
+  light: "লাইট সদস্য",
+  irregular: "অনিয়মিত সদস্য",
+};
+
 type Props = {
   member: Member;
 };
@@ -15,16 +29,12 @@ function getImageUrl(path?: string | null) {
   return `${base}${path}`;
 }
 
-// 🔥 same mapping logic as card
-const categoryLabels: Record<string, string> = {
-  general: "সাধারণ সদস্য",
-  light: "লাইট সদস্য",
-  irregular: "অনিয়মিত সদস্য",
-};
-
 export function MemberDetailContent({ member }: Props) {
   const imageUrl = getImageUrl(member.profileImageUrl);
   const type = member.membershipType || "general";
+  const badgeClass =
+    "rounded-full px-4 py-1.5 text-sm font-semibold ring-1 " +
+    (categoryStyles[type] || categoryStyles.general);
 
   return (
     <main className="min-h-screen bg-[linear-gradient(to_bottom,#f8fcf9,#ffffff)]">
@@ -34,16 +44,18 @@ export function MemberDetailContent({ member }: Props) {
         <div className="overflow-hidden rounded-4xl border border-slate-200 bg-white shadow-lg">
 
           {/* Image */}
-          <div className="relative h-72 w-full bg-slate-100">
+          <div className="relative mt-3 flex items-center justify-center h-100 w-full">
             {imageUrl ? (
-              <Image
-                src={imageUrl}
-                alt={member.fullNameBn || member.fullNameEn}
-                fill
-                unoptimized
-                className="object-cover"
-                priority
-              />
+              <div className="overflow-hidden rounded-2xl w-110 h-100 relative">
+                <Image
+                  src={imageUrl}
+                  alt={member.fullNameBn || member.fullNameEn}
+                  fill
+                  unoptimized
+                  className="object-cover"
+                  priority
+                />
+              </div>
             ) : (
               <div className="flex h-full items-center justify-center text-slate-400">
                 No image available
@@ -66,7 +78,7 @@ export function MemberDetailContent({ member }: Props) {
                 </p>
               </div>
 
-              <span className="rounded-full bg-emerald-50 px-4 py-1.5 text-sm font-semibold text-emerald-700 ring-1 ring-emerald-200">
+              <span className={badgeClass}>
                 {categoryLabels[type] || "সদস্য"}
               </span>
             </div>

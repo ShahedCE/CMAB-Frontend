@@ -269,14 +269,9 @@ export default function AddMemberForm() {
             {...register("membershipType")}
           >
            <option value="">সদস্যের ধরন নির্বাচন করুন</option>
-            <option value="daktar">ডাক্তার</option>
-            <option value="nurse">নার্স</option>
-            <option value="chatro-chatri">ছাত্র-ছাত্রী</option>
-            <option value="paramedic">প্যারামেডিক</option>
-            <option value="technician">টেকনিশিয়ান</option>
-            <option value="hospital-training-staff">হাসপাতাল প্রশিক্ষণ কর্মী</option>
-            <option value="hospital-attendant">হাসপাতাল পালক</option>
-            <option value="purohit">পুরোহিত</option>
+            <option value="general">সাধারণ সদস্য</option>
+            <option value="light">লাইট সদস্য</option>
+            <option value="irregular">অনিয়মিত সদস্য</option>
           </select>
           {errors.membershipType?.message ? (
             <p className="text-sm text-red-600">{errors.membershipType.message}</p>

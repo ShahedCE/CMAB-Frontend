@@ -119,7 +119,7 @@ export default function ActivitiesPage() {
 
         <Link
           href="/admin/activities/create"
-          className="inline-flex items-center rounded-xl bg-green-200 px-4 py-2 text-sm font-semibold text-black transition hover:bg-green-300"
+          className="rounded-xl bg-green-700 px-4 py-2 text-sm font-semibold text-white"
         >
           Create Activity
         </Link>

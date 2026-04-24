@@ -324,8 +324,9 @@ export default function EditMemberForm() {
             {...register("membershipType")}
           >
             <option value="">সদস্যের ধরন নির্বাচন করুন</option>
-            <option value="general">General Member</option>
-            <option value="lifetime">Lifetime Member</option>
+            <option value="general">সাধারণ সদস্য</option>
+            <option value="light">লাইট সদস্য</option>
+            <option value="irregular">অনিয়মিত সদস্য</option>
           </select>
           {errors.membershipType?.message ? (
             <p className="text-sm text-red-600">{errors.membershipType.message}</p>

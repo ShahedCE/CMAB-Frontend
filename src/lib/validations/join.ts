@@ -6,7 +6,10 @@ const educationEntrySchema = z.object({
   degree: z.string().min(1, "ডিগ্রি/পরীক্ষার নাম আবশ্যক"),
   institution: z.string().min(1, "শিক্ষা প্রতিষ্ঠানের নাম আবশ্যক"),
   result: z.string().min(1, "বিশ্ববিদ্যালয়ের নাম আবশ্যক"),
-  passingYear: z.string().min(1, "পাশের বছর আবশ্যক"),
+  passingYear: z
+    .string()
+    .min(1, "পাশের বছর আবশ্যক")
+    .regex(/^[1-9]{1}[0-9]{3}$/, "পাশের বছরটি সঠিকভাবে দিন"),
 });
 
 export const joinApplicationSchema = z.object({

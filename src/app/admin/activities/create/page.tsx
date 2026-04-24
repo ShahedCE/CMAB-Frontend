@@ -225,7 +225,8 @@ export default function CreateActivityPage() {
         <div className="flex justify-end gap-2 border-t pt-4">
           <Link
             href="/admin/activities"
-            className="rounded-lg border px-4 py-2 text-sm"
+            className="rounded-lg hover:bg-slate-100 border px-4 py-2 text-sm"
+       
           >
             Cancel
           </Link>
@@ -233,8 +234,8 @@ export default function CreateActivityPage() {
           <button
             type="submit"
             disabled={saving}
-            className="rounded-lg bg-slate-900 px-4 py-2 text-sm text-white"
-          >
+            className="rounded-xl bg-green-700 px-4 py-2 text-sm font-semibold text-white"
+            >
             {saving ? "Creating..." : "Create Activity"}
           </button>
         </div>

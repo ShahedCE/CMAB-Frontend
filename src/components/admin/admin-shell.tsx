@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { getAdminUser, getAccessToken } from "@/lib/admin/auth-storage";
 import { logoutAdmin } from "@/lib/admin/auth-api";
 import { getUnreadNotificationCount } from "@/lib/admin/dashboard-api"; // UPDATE: Import correct function
@@ -20,7 +20,7 @@ const authRoutes = [
 
 const navItems = [
   { href: "/admin", label: "Dashboard" },
-  { href: "/admin/join-requests", label: "Join Requests" },
+  { href: "/admin/join-requests", label: "Join Requests & Member Details" },
   { href: "/admin/members", label: "Members" },
   { href: "/admin/contacts", label: "Contacts" },
   { href: "/admin/activities", label: "Activities" },
@@ -38,6 +38,11 @@ export function AdminShell({ children }: AdminShellProps) {
   const [ready, setReady] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
+  
+  // Fix: after logging in, Logging out showing, 
+  // because loggingOut is not reset on successful login route navigation.
+  // Use a ref to ensure reset just after navigation to dashboard
+  const prevPathnameRef = useRef<string | null>(null);
 
   const isAuthRoute = useMemo(() => authRoutes.includes(pathname), [pathname]);
 
@@ -56,6 +61,14 @@ export function AdminShell({ children }: AdminShellProps) {
 
     setReady(true);
   }, [isAuthRoute, pathname, router]);
+
+  // Reset loggingOut if pathname changes away from login-related pages, so button label fixes itself after login succeeds
+  useEffect(() => {
+    if (prevPathnameRef.current !== null && prevPathnameRef.current !== pathname) {
+      setLoggingOut(false);
+    }
+    prevPathnameRef.current = pathname;
+  }, [pathname]);
 
   useEffect(() => {
     if (isAuthRoute) return;
@@ -102,6 +115,8 @@ export function AdminShell({ children }: AdminShellProps) {
     setLoggingOut(true);
     await logoutAdmin();
     router.replace("/admin/login");
+    // do not reset setLoggingOut(false) here to keep "Logging out..." while navigating away
+    // will be reset by the pathname effect
   };
 
   if (!ready) {
