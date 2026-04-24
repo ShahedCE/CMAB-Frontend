@@ -200,11 +200,7 @@ export async function rejectJoinRequest(id: string) {
 
 // optional public create join request
 export async function createJoinRequest(formData: FormData) {
-  const { data } = await apiClient.post("/join-requests", formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  const {data} = await apiClient.post("/join-requests", formData);
   return data;
 }
 

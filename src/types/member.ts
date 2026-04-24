@@ -5,18 +5,27 @@ export type MemberCategory =
   | "irregular";
 
 export type Member = {
-  id: number;
-  slug: string;
-  name: string;
-  image: string;
-  memberType: MemberCategory;
-  profession: string;
-  organization: string;
-  district: string;
-  shortBio: string;
-  fullBio: string;
-  educationSummary: string;
-  expertise: string[];
-  memberSince: string;
-  isPublished: boolean;
+ 
+  id: string;
+  fullNameBn: string;
+  fullNameEn: string;
+  membershipType: Exclude<MemberCategory, "all">;
+
+  specialty?: string | null;
+  presentDistrict?: string | null;
+  permanentDistrict?: string | null;
+
+  profileImageUrl?: string | null;
+
+  workplaceTypes?: string[];
+  educationEntries?: {
+    degree?: string;
+    institution?: string;
+    passingYear?: string;
+    result?: string;
+  }[];
+  notes: string;
+
+  approvedAt?: string | null;
+  createdAt: string;
 };

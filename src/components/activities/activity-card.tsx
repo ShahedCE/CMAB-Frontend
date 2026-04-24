@@ -17,6 +17,8 @@ type ActivityCardProps = {
 
 export function ActivityCard({ activity }: ActivityCardProps) {
   const imageUrl = getImageUrl(activity.image);
+  console.log("activity.image:", activity.image);
+console.log("imageUrl:", imageUrl);
 
   return (
     <article className="group overflow-hidden rounded-4xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">

@@ -10,7 +10,79 @@ import {
   joinApplicationSchema,
   type JoinApplicationFormValues,
 } from "@/lib/validations/join";
-import { submitApplication } from "@/lib/submit-application";
+import { JoinFormValues } from "@/types/join";
+import { createJoinRequest } from "@/lib/admin/dashboard-api";
+
+const onSubmit = async (values: JoinFormValues) => {
+  try {
+    const formData = new FormData();
+
+    // 🔹 basic fields
+    formData.append("fullNameBn", values.fullNameBn);
+    formData.append("fullNameEn", values.fullNameEn);
+    formData.append("fatherName", values.fatherName);
+    formData.append("motherName", values.motherName);
+    formData.append("dateOfBirth", values.dateOfBirth);
+    formData.append("nationalId", values.nationalId);
+    formData.append("medicalRegNo", values.medicalRegNo);
+    formData.append("membershipType", values.membershipType);
+
+    formData.append("email", values.email);
+    formData.append("mobile", values.mobile);
+    if (values.phone) formData.append("phone", values.phone);
+
+    // 🔹 address
+    formData.append("presentVillage", values.presentVillage);
+    formData.append("presentPost", values.presentPost);
+    formData.append("presentThana", values.presentThana);
+    formData.append("presentDistrict", values.presentDistrict);
+
+    formData.append("permanentVillage", values.permanentVillage);
+    formData.append("permanentPost", values.permanentPost);
+    formData.append("permanentThana", values.permanentThana);
+    formData.append("permanentDistrict", values.permanentDistrict);
+
+    // 🔹 optional
+    if (values.specialty) formData.append("specialty", values.specialty);
+
+    // 🔹 education array (🔥 important)
+    formData.append(
+      "educationEntries",
+      JSON.stringify(values.educationEntries)
+    );
+
+    // 🔹 workplaceTypes
+    formData.append(
+      "workplaceTypes",
+      JSON.stringify(values.workplaceTypes)
+    );
+
+    formData.append("entryFee", values.entryFee);
+    formData.append("annualFee", values.annualFee);
+    formData.append("lifetimeFee", values.lifetimeFee);
+
+    formData.append(
+      "declarationAccepted",
+      String(values.declarationAccepted)
+    );
+
+    if (values.notes) formData.append("notes", values.notes);
+
+    // 🔥 image
+    if (values.profileImage) {
+      formData.append("profileImage", values.profileImage);
+    }
+
+    // 🚀 API call
+    await createJoinRequest(formData);
+
+    alert("Application submitted successfully ✅");
+
+  } catch (err) {
+    console.error(err);
+    alert("Submission failed ❌");
+  }
+};
 
 export default function JoinFormWithHeader() {
   return (
@@ -100,53 +172,31 @@ export function JoinForm() {
   const lifetimeFee = Number(watch("lifetimeFee") || 0);
   const totalFee = entryFee + annualFee + lifetimeFee;
 
-  const onSubmit = async (values: JoinApplicationFormValues) => {
-    setSubmitSuccess("");
-    setSubmitError("");
-
+  const onSubmit = async (payload: any) => {
     try {
-      const payload = {
-        fullNameBn: values.fullNameBn,
-        fullNameEn: values.fullNameEn,
-        fatherName: values.fatherName,
-        motherName: values.motherName,
-        dateOfBirth: values.dateOfBirth,
-        nationalId: values.nationalId,
-        medicalRegNo: values.medicalRegNo,
-        membershipType: values.membershipType,
-        email: values.email,
-        mobile: values.mobile,
-        phone: values.phone,
-        presentVillage: values.presentVillage,
-        presentPost: values.presentPost,
-        presentThana: values.presentThana,
-        presentDistrict: values.presentDistrict,
-        permanentVillage: values.permanentVillage,
-        permanentPost: values.permanentPost,
-        permanentThana: values.permanentThana,
-        permanentDistrict: values.permanentDistrict,
-        specialty: values.specialty || "",
-        educationEntries: values.educationEntries,
-        entryFee: Number(values.entryFee ?? 0),
-        annualFee: Number(values.annualFee ?? 0),
-        lifetimeFee: Number(values.lifetimeFee ?? 0),
-        workplaceTypes: values.workplaceTypes,
-        declarationAccepted: values.declarationAccepted,
-        notes: values.notes,
-        profileImage: values.profileImage, // FIX: use profileImage not profile_image_url
-      };
-
-      console.log("Validated application data:", payload);
-
-      await submitApplication(payload);
-
-      setSubmitSuccess("আপনার সদস্যপদের আবেদন সফলভাবে জমা হয়েছে।");
-      reset();
-    } catch (error) {
-      console.error(error);
-      setSubmitError("ফর্ম জমা দিতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।");
+      const formData = new FormData();
+  
+      // 🔹 simple fields
+      Object.entries(payload).forEach(([key, value]) => {
+        if (value === undefined || value === null) return;
+  
+        // 🔥 special cases handle নিচে
+        if (key === "educationEntries" || key === "workplaceTypes") {
+          formData.append(key, JSON.stringify(value));
+        } else if (key === "profileImage") {
+          formData.append("profileImage", value as File);
+        } else {
+          formData.append(key, String(value));
+        }
+      });
+  
+      await createJoinRequest(formData); 
+  
+    } catch (err) {
+      console.error(err);
     }
   };
+
 
   return (
     <div className="rounded-4xl border border-slate-200 bg-white  shadow-sm sm:p-8 lg:p-10">

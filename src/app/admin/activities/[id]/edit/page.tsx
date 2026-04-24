@@ -328,7 +328,7 @@ export default function EditActivityPage() {
           <button
             type="submit"
             disabled={saving}
-            className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
+            className="rounded-lg bg-green-200 px-4 py-2 text-sm font-semibold text-black transition hover:bg-green-300 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {saving ? "Updating..." : "Update Activity"}
           </button>
