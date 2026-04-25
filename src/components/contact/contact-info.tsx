@@ -122,13 +122,13 @@ export function ContactInfo() {
         content={
           <div className="flex flex-col gap-1">
             <Link
-              href="tel:+8801700000000"
+              href="tel:+8801715493330"
               className="text-slate-700 transition-colors hover:text-(--brand-green-dark)"
             >
-              +880 1700-12530000
+              +880 1715-493330
             </Link>
             <Link
-              href="https://wa.me/8801712530000"
+              href="https://wa.me/8801715493330"
               target="_blank"
               rel="noreferrer"
               className="text-slate-700 transition-colors hover:text-(--brand-green-dark)"
@@ -147,7 +147,7 @@ export function ContactInfo() {
             href="mailto:info@cmab.org"
             className="text-slate-700 transition-colors hover:text-(--brand-green-dark)"
           >
-            info@cmab.org
+            cmabgs24@gmail.com
           </Link>
         }
       />
@@ -172,7 +172,7 @@ export function ContactInfo() {
           </Link>
 
           <Link
-            href="https://wa.me/8801700000000"
+            href="https://wa.me/8801715493330"
             target="_blank"
             rel="noreferrer"
             aria-label="WhatsApp"
