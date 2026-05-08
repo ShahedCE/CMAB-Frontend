@@ -12,7 +12,7 @@ const categoryStyles: Record<string, string> = {
 //  same mapping logic as card
 const categoryLabels: Record<string, string> = {
   general: "সাধারণ সদস্য",
-  light: "লাইট সদস্য",
+  light: "লাইফ সদস্য",//edited
   irregular: "অনিয়মিত সদস্য",
 };
 

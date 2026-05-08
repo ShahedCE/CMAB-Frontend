@@ -25,7 +25,7 @@ const categoryStyles: Record<string, string> = {
 // 🔥 Bangla mapping
 const categoryLabels: Record<string, string> = {
   general: "সাধারণ সদস্য",
-  light: "লাইট সদস্য",
+  light: "লাইফ সদস্য",
   irregular: "অনিয়মিত সদস্য",
 };
 

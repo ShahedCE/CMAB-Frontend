@@ -57,14 +57,14 @@ export default function Hero() {
             className="w-full sm:w-auto bg-white text-emerald-700 px-8 py-4 rounded-full font-bold text-lg
             hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2 group"
             >
-            আমাদের কার্যক্রম
+            Activities
             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
             href="/contact"
             className="w-full sm:w-auto bg-transparent border-2 border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-full font-bold text-lg backdrop-blur hover:border-white transition-all duration-300 text-center"
             >
-            যোগাযোগ করুন
+            Contact
             </Link>
         </motion.div>
       </div>

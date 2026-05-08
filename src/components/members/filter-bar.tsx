@@ -13,7 +13,7 @@ type FilterBarProps = {
 const filterOptions: FilterOption[] = [
   { label: "সকল সদস্য", value: "all" }, 
   { label: "সাধারণ সদস্য", value: "general" },
-  { label: "লাইট সদস্য", value: "light" },
+  { label: "লাইফ সদস্য", value: "light" },
   { label: "অনিয়মিত সদস্য", value: "irregular" },
 ];
 

@@ -1,30 +1,72 @@
 "use client";
 import { motion } from "framer-motion";
-import { 
-  Building2, 
-  Target, 
-  Heart, 
-  Stethoscope, 
-  Baby, 
-  GraduationCap, 
-  ShieldCheck, 
-  Scale, 
+import {
+  Building2,
+  Target,
+  Heart,
+  Stethoscope,
+  Baby,
+  GraduationCap,
+  ShieldCheck,
+  Scale,
   Leaf
 } from "lucide-react";
 
 export default function About() {
+  // English and Bengali versions of aims/objectives
   const aims = [
-    { text: "দেশব্যাপী স্বাস্থ্যসেবা উন্নয়ন করা", icon: <Stethoscope size={24} className="text-emerald-600"/> },
-    { text: "দরিদ্র ও অসহায় মানুষের চিকিৎসা সহায়তা", icon: <Heart size={24} className="text-emerald-600"/> },
-    { text: "চিকিৎসা ক্ষেত্রে দক্ষ জনশক্তি তৈরি", icon: <GraduationCap size={24} className="text-emerald-600"/> },
-    { text: "মাতৃ ও শিশু স্বাস্থ্য উন্নয়ন", icon: <Baby size={24} className="text-emerald-600"/> },
+    {
+      text_en: "To improve healthcare services all over the country",
+      text_bn: "দেশব্যাপী স্বাস্থ্যসেবা উন্নয়ন করা",
+      icon: <Stethoscope size={24} className="text-emerald-600"/>
+    },
+    {
+      text_en: "Providing medical assistance to the poor and helpless",
+      text_bn: "দরিদ্র ও অসহায় মানুষের চিকিৎসা সহায়তা",
+      icon: <Heart size={24} className="text-emerald-600"/>
+    },
+    {
+      text_en: "To develop skilled manpower in the health sector",
+      text_bn: "চিকিৎসা ক্ষেত্রে দক্ষ জনশক্তি তৈরি",
+      icon: <GraduationCap size={24} className="text-emerald-600"/>
+    },
+    {
+      text_en: "To improve maternal and child health",
+      text_bn: "মাতৃ ও শিশু স্বাস্থ্য উন্নয়ন",
+      icon: <Baby size={24} className="text-emerald-600"/>
+    },
   ];
 
+  // English and Bengali values
   const values = [
-    { title: "মানবসেবা", desc: "মানুষের কল্যাণে নিঃস্বার্থভাবে কাজ করা", icon: <Heart size={28} className="text-white"/> },
-    { title: "খ্রিস্টীয় নৈতিকতা", desc: "খ্রিস্টের আদর্শে অনুপ্রাণিত হয়ে ভালোবাসা ছড়িয়ে দেওয়া", icon: <Building2 size={28} className="text-white"/> },
-    { title: "সততা ও দায়িত্বশীলতা", desc: "কাজের প্রতিটি ক্ষেত্রে স্বচ্ছতা ও জবাবদিহিতা", icon: <ShieldCheck size={28} className="text-white"/> },
-    { title: "সমতা ও সহানুভূতি", desc: "ধর্ম, বর্ণ নির্বিশেষে সবার জন্য সমান অধিকার", icon: <Scale size={28} className="text-white"/> },
+    {
+      title_en: "Humanitarian Service",
+      desc_en: "Serving people selflessly for their well-being",
+      title_bn: "মানবসেবা",
+      desc_bn: "মানুষের কল্যাণে নিঃস্বার্থভাবে কাজ করা",
+      icon: <Heart size={28} className="text-white"/>
+    },
+    {
+      title_en: "Christian Ethics",
+      desc_en: "Spreading love inspired by the ideals of Christ",
+      title_bn: "খ্রিস্টীয় নৈতিকতা",
+      desc_bn: "খ্রিস্টের আদর্শে অনুপ্রাণিত হয়ে ভালোবাসা ছড়িয়ে দেওয়া",
+      icon: <Building2 size={28} className="text-white"/>
+    },
+    {
+      title_en: "Integrity & Responsibility",
+      desc_en: "Transparency and accountability in every action",
+      title_bn: "সততা ও দায়িত্বশীলতা",
+      desc_bn: "কাজের প্রতিটি ক্ষেত্রে স্বচ্ছতা ও জবাবদিহিতা",
+      icon: <ShieldCheck size={28} className="text-white"/>
+    },
+    {
+      title_en: "Equity & Compassion",
+      desc_en: "Equal rights for all regardless of religion or ethnicity",
+      title_bn: "সমতা ও সহানুভূতি",
+      desc_bn: "ধর্ম, বর্ণ নির্বিশেষে সবার জন্য সমান অধিকার",
+      icon: <Scale size={28} className="text-white"/>
+    },
   ];
 
   return (
@@ -33,7 +75,7 @@ export default function About() {
       <section className=" bg-emerald-700 text-white pt-36 pb-24 px-6 relative overflow-hidden shadow-2xl w-full mb-20">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
         <div className="absolute -top-20 -right-20 w-80 h-80 bg-teal-600 rounded-full blur-[100px] opacity-30"></div>
-        
+
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -45,7 +87,7 @@ export default function About() {
               <Leaf size={40} className="text-emerald-100" />
             </div>
           </motion.div>
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -53,7 +95,7 @@ export default function About() {
           >
             আমাদের সম্পর্কে
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -64,7 +106,45 @@ export default function About() {
         </div>
       </section>
 
-      {/* History & Story */}
+      {/* History & Story - ENGLISH */}
+      <section className="max-w-7xl mx-auto px-6 mb-10 grid md:grid-cols-2 gap-16 items-center">
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-emerald-600 font-bold uppercase tracking-widest text-sm mb-2">History</h2>
+          <h3 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+            How Our Journey Began
+          </h3>
+          <div className="w-16 h-1.5 bg-emerald-600 rounded-full mb-8"></div>
+          <p className="text-gray-600 text-lg leading-relaxed mb-6">
+            The Christian Medical Association of Bangladesh (CMAB) was established on <span className="font-bold text-gray-900">11 January 1956</span> with a noble aim. The seed of its foundation was sown at Rajshahi Christian Mission Hospital.
+          </p>
+          <p className="text-gray-600 text-lg leading-relaxed">
+            Since its inception, CMAB has been working tirelessly to deliver healthcare services at the doorsteps of people in remote and underserved areas of the country.
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration:0.8 }}
+          className="relative"
+        >
+          <div className="absolute inset-0 bg-linear-to-tr from-emerald-600/30 to-teal-500/20 rounded-3xl blur-2xl transform rotate-6"></div>
+          <div className="relative bg-white rounded-3xl border border-gray-100 shadow-xl p-10 flex flex-col items-center justify-center text-center aspect-square">
+            <Building2 size={80} className="text-emerald-600/20 mb-6 absolute z-0 scale-150 top-10 right-10" />
+            <div className="relative z-10">
+              <h4 className="text-6xl font-black text-gray-900 mb-2">1956</h4>
+              <p className="text-xl font-bold text-emerald-600 uppercase tracking-widest">Establishment</p>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+      {/* History & Story - BANGLA */}
       <section className="max-w-7xl mx-auto px-6 mb-24 grid md:grid-cols-2 gap-16 items-center">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -84,13 +164,13 @@ export default function About() {
             প্রতিষ্ঠার পর থেকে দেশের প্রত্যন্ত ও সুবিধা বঞ্চিত মানুষের দোড়গোড়ায় স্বাস্থ্যসেবা পৌঁছে দিতে সিএমএবি নিরলসভাবে কাজ করে যাচ্ছে।
           </p>
         </motion.div>
-        
+
         <motion.div
-           initial={{ opacity: 0, scale: 0.9 }}
-           whileInView={{ opacity: 1, scale: 1 }}
-           viewport={{ once: true }}
-           transition={{ duration: 0.8 }}
-           className="relative"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative"
         >
           <div className="absolute inset-0 bg-linear-to-tr from-emerald-600/30 to-teal-500/20 rounded-3xl blur-2xl transform rotate-6"></div>
           <div className="relative bg-white rounded-3xl border border-gray-100 shadow-xl p-10 flex flex-col items-center justify-center text-center aspect-square">
@@ -103,8 +183,8 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* Objectives */}
-      <section className="bg-white py-24 mb-24 border-y border-gray-100">
+      {/* Objectives - ENGLISH */}
+      <section className="bg-white py-24 mb-2 border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -113,13 +193,15 @@ export default function About() {
             transition={{ duration: 0.6 }}
           >
             <Target size={48} className="text-emerald-600 mx-auto mb-6" />
-            <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-12">আমাদের লক্ষ্য ও উদ্দেশ্য</h2>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-12">
+              Our Aims & Objectives
+            </h2>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {aims.map((aim, i) => (
               <motion.div
-                key={aim.text}
+                key={aim.text_en}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -129,24 +211,68 @@ export default function About() {
                 <div className="bg-white p-4 rounded-2xl inline-block shadow-sm mb-6 group-hover:scale-110 transition-transform">
                   {aim.icon}
                 </div>
-                <h4 className="text-xl font-bold text-gray-900 leading-snug">{aim.text}</h4>
+                <h4 className="text-xl font-bold text-gray-900 leading-snug">{aim.text_en}</h4>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      
+      {/* Objectives - BANGLA */}
+   
+        <div className="max-w-7xl mt-16 mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <Target size={48} className="text-emerald-600 mx-auto mb-6" />
+            <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-12">
+              আমাদের লক্ষ্য ও উদ্দেশ্য
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {aims.map((aim, i) => (
+              <motion.div
+                key={aim.text_bn}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="bg-gray-50 border border-gray-100 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 hover:border-emerald-100 hover:bg-emerald-50 text-left group"
+              >
+                <div className="bg-white p-4 rounded-2xl inline-block shadow-sm mb-6 group-hover:scale-110 transition-transform">
+                  {aim.icon}
+                </div>
+                <h4 className="text-xl font-bold text-gray-900 leading-snug">{aim.text_bn}</h4>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-sm font-bold text-teal-600 uppercase tracking-widest mb-2">মূল নীতি</h2>
-          <h3 className="text-3xl md:text-5xl font-extrabold text-gray-900">আমাদের মূল্যবোধ</h3>
-        </div>
-
+      {/* Values - ENGLISH */}
+      <section className="max-w-7xl mx-auto px-6 mt-0">
+        
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+          <div className="text-center mb-16">
+          <h2 className="text-sm font-bold text-teal-600 uppercase tracking-widest mb-2">Core Principles</h2>
+          <h3 className="text-3xl md:text-5xl font-extrabold text-gray-900">
+            Our Values
+          </h3>
+          </div>
+          </motion.div>
+        
         <div className="grid md:grid-cols-2 gap-8">
           {values.map((val, i) => (
             <motion.div
-              key={val.title}
+              key={val.title_en}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -157,8 +283,44 @@ export default function About() {
                 {val.icon}
               </div>
               <div>
-                <h4 className="text-2xl font-bold text-gray-900 mb-2">{val.title}</h4>
-                <p className="text-gray-600 text-lg">{val.desc}</p>
+                <h4 className="text-2xl font-bold text-gray-900 mb-1">{val.title_en}</h4>
+                <p className="text-gray-600 text-lg">{val.desc_en}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+      {/* Values - BANGLA */}
+      <section className="max-w-7xl mt-16 mx-auto px-6">
+         <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+        <div className="text-center  mb-16">
+          <h2 className="text-sm font-bold text-teal-600 uppercase tracking-widest mb-2">মূল নীতি</h2>
+          <h3 className="text-3xl md:text-5xl font-extrabold text-gray-900">
+            আমাদের মূল্যবোধ
+          </h3>
+        </div>
+        </motion.div>
+        <div className="grid md:grid-cols-2 gap-8">
+          {values.map((val, i) => (
+            <motion.div
+              key={val.title_bn}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="flex items-center gap-6 bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:border-emerald-600 transition-colors"
+            >
+              <div className="shrink-0 bg-emerald-600 p-4 rounded-2xl shadow-md flex items-center justify-center h-16 w-16">
+                {val.icon}
+              </div>
+              <div>
+                <h4 className="text-2xl font-bold text-gray-900 mb-1">{val.title_bn}</h4>
+                <p className="text-gray-600 text-lg">{val.desc_bn}</p>
               </div>
             </motion.div>
           ))}
