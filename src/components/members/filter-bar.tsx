@@ -22,7 +22,8 @@ export function FilterBar({
   onChange,
 }: FilterBarProps) {
   return (
-    <div className="flex flex-wrap gap-2">
+   
+    <div className="flex flex-wrap gap-2 ml-4 mb-4"> {/*edited*/}
       {filterOptions.map((option) => {
         const isActive = activeFilter === option.value;
 
@@ -42,5 +43,6 @@ export function FilterBar({
         );
       })}
     </div>
+  
   );
 }

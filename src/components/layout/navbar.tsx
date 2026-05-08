@@ -211,31 +211,20 @@ export function Navbar() {
               ))}
             </nav>
 
-            <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
-              <Link
-                href="/contact"
-                onClick={() => setMenuOpen(false)}
-                className="inline-flex h-12 items-center justify-center 
-                rounded-2xl border border-[rgba(10,163,79,0.14)] bg-white 
-                px-5 text-sm font-semibold text-slate-700 transition-all duration-300
-                 hover:border-(--brand-green)
-                  hover:bg-(--brand-green-soft) hover:text-(--brand-green-dark)"
-              >
-                Contact
-              </Link>
-
+            <div className="mt-4 flex">
               <Link
                 href="/join"
                 onClick={() => setMenuOpen(false)}
-                className="inline-flex h-12 items-center justify-center
-                 rounded-2xl bg-[linear-gradient(135deg,var(--brand-green),
-                 var(--brand-green-dark))] px-5 text-sm font-semibold
-                  text-white shadow-[0_12px_24px_rgba(10,163,79,0.24)]
-                   transition-all duration-300 hover:shadow-[0_16px_32px_rgba(10,163,79,0.30)]"
+                className="flex-1 inline-flex h-12 items-center justify-center 
+                  rounded-2xl border border-[rgba(10,163,79,0.14)] bg-white 
+                  px-5 text-sm font-semibold text-slate-700 transition-all duration-300
+                  hover:border-(--brand-green-dark)
+                  hover:bg-(--brand-green-soft) hover:text-(--brand-green-dark)"
               >
                 Join CMAB
               </Link>
             </div>
+       
           </div>
         </Container>
       </div>

@@ -2,14 +2,14 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import type { Member } from "@/types/member";
 
-// 🟢 Styles by membership category
+//  Styles by membership category
 const categoryStyles: Record<string, string> = {
   general: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
   light: "bg-sky-50 text-sky-700 ring-1 ring-sky-200",
   irregular: "bg-amber-50 text-amber-700 ring-1 ring-amber-200",
 };
 
-// 🔥 same mapping logic as card
+//  same mapping logic as card
 const categoryLabels: Record<string, string> = {
   general: "সাধারণ সদস্য",
   light: "লাইট সদস্য",
@@ -40,7 +40,7 @@ export function MemberDetailContent({ member }: Props) {
     <main className="min-h-screen bg-[linear-gradient(to_bottom,#f8fcf9,#ffffff)]">
       <div className="mx-auto max-w-5xl px-4 py-10">
 
-        {/* 🔥 Card */}
+        {/* Card */}
         <div className="overflow-hidden rounded-4xl border border-slate-200 bg-white shadow-lg">
 
           {/* Image */}

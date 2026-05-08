@@ -39,7 +39,7 @@ export function MembersClient({ members }: { members: Member[] }) {
         <div className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-center">
           <SearchBar value={searchQuery} onChange={setSearchQuery} />
 
-          <div className="text-sm font-medium text-slate-500">
+          <div className="text-sm font-medium text-slate-500 ml-4">{/*edited*/}
             <span className="font-semibold text-slate-800">
               {toBanglaNumber(filteredMembers.length)}
             </span>{" "}

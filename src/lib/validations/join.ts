@@ -9,7 +9,7 @@ const educationEntrySchema = z.object({
   passingYear: z
     .string()
     .min(1, "পাশের বছর আবশ্যক")
-    .regex(/^[1-9]{1}[0-9]{3}$/, "পাশের বছরটি সঠিকভাবে দিন"),
+    .regex(/^[1-9]{1}[0-9]{3}$/, "পাশের বছরটি সঠিকভাবে দিন   "),
 });
 
 export const joinApplicationSchema = z.object({

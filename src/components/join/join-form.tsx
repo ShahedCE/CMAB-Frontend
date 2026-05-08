@@ -175,7 +175,7 @@ export function JoinForm() {
   return (
     <div className="rounded-4xl border border-slate-200 bg-white  shadow-sm sm:p-8 lg:p-10">
       {/* Association Name and Address */}
-      <div className="mb-8">
+      <div className="mb-8 mt-4">
         <h2 className="text-2xl font-bold text-center text-slate-800">
           খ্রিস্টিয়ান মেডিক্যাল অ্যাসোসিয়েশন বাংলাদেশ (সিএমএবি)
         </h2>
@@ -188,11 +188,12 @@ export function JoinForm() {
         </p>
       </div>
 
-      <p className=" text-xs">
+      <p className="ml-2 text-xs">
         <span className="text-red-500">*</span> চিহ্নিত ঘরগুলো বাধ্যতামূলক।
       </p>
 
       <form onSubmit={handleSubmit(onSubmit)} className="mt-8 grid gap-6">
+      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
         <FormInput
           label="নাম (বাংলা)"
           required
@@ -277,7 +278,7 @@ export function JoinForm() {
           ) : null}
         </div>
 
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="mt-3 grid gap-5 md:grid-cols-2">
           <FormInput
             label="ইমেইল"
             type="email"
@@ -304,6 +305,7 @@ export function JoinForm() {
           error={errors.phone?.message}
           {...register("phone")}
         />
+        </div>
 
         <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
           <h3 className="text-sm font-semibold text-slate-800">বর্তমান ঠিকানা</h3>
@@ -373,13 +375,14 @@ export function JoinForm() {
           </div>
         </div>
 
+        <div className="rounded-2xl  p-4">
         <FormInput
           label="বিশেষজ্ঞ হলে বিষয়"
           placeholder="যদি থাকে লিখুন"
           error={errors.specialty?.message}
           {...register("specialty")}
         />
-
+        </div>
         <section className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
           <div className="mb-3 flex items-center justify-between gap-3">
             <h3 className="text-sm font-semibold text-slate-800">
@@ -523,7 +526,8 @@ export function JoinForm() {
             <p className="text-sm text-red-600">{errors.workplaceTypes.message}</p>
           ) : null}
         </fieldset>
-
+        
+        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
         <FormTextarea
           label="সংক্ষিপ্ত তথ্য"
           required
@@ -573,6 +577,7 @@ export function JoinForm() {
             {submitError}
           </div>
         ) : null}
+        </div>
 
         <button
           type="submit"

@@ -1,13 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "standalone", // 🔥 MUST for server deploy
+
   images: {
-    unoptimized: true, // 🔥 temporary fix (VERY IMPORTANT)
+    unoptimized: true, // ok
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "localhost",
-        port: "4000",
+        protocol: "https",
+        hostname: "api.cmabdhaka.com",
         pathname: "/uploads/**",
       },
     ],

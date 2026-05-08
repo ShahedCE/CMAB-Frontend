@@ -5,7 +5,9 @@ import { AppShell } from "@/components/layout/app-shell";
 export const metadata: Metadata = {
   title: "CMAB",
   description: "Christian Medical Association Bangladesh",
+
 };
+
 
 export default function RootLayout({
   children,

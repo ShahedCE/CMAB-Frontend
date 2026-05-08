@@ -5,6 +5,7 @@ type SearchBarProps = {
 
 export function SearchBar({ value, onChange }: SearchBarProps) {
   return (
+    <div className="rounded-2xl ml-4 mt-4 mr-4"> {/*changed*/}
     <div className="relative w-full">
       <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
         <svg
@@ -29,6 +30,7 @@ export function SearchBar({ value, onChange }: SearchBarProps) {
          text-slate-800 outline-none transition-all duration-300 placeholder:text-slate-400 
          focus:border-(--brand-green) focus:ring-4 focus:ring-[rgba(10,163,79,0.12)]"
       />
+    </div>
     </div>
   );
 }
