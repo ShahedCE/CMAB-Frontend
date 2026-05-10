@@ -192,8 +192,8 @@ export function JoinForm() {
         <span className="text-red-500">*</span> চিহ্নিত ঘরগুলো বাধ্যতামূলক।
       </p>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="mt-8 grid gap-6">
-      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-6">
+      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 mb-4">
         <FormInput
           label="নাম (বাংলা)"
           required
@@ -307,7 +307,7 @@ export function JoinForm() {
         />
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 mb-4">
           <h3 className="text-sm font-semibold text-slate-800">বর্তমান ঠিকানা</h3>
           <div className="mt-3 grid gap-5 md:grid-cols-2">
             <FormInput
@@ -341,7 +341,7 @@ export function JoinForm() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 mb-4">
           <h3 className="text-sm font-semibold text-slate-800">স্থায়ী ঠিকানা</h3>
           <div className="mt-3 grid gap-5 md:grid-cols-2">
             <FormInput
@@ -383,7 +383,7 @@ export function JoinForm() {
           {...register("specialty")}
         />
         </div>
-        <section className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+        <section className="rounded-2xl border border-slate-200 bg-slate-50 p-4 mb-4">
           <div className="mb-3 flex items-center justify-between gap-3">
             <h3 className="text-sm font-semibold text-slate-800">
               শিক্ষাগত যোগ্যতা<span className="text-red-500">*</span>
@@ -464,7 +464,7 @@ export function JoinForm() {
           ) : null}
         </section>
 
-        <section className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+        <section className="rounded-2xl border border-slate-200 bg-slate-50 p-4 mb-4">
           <h3 className="mb-3 text-sm font-semibold text-slate-800">ফি ও চাঁদা তথ্য</h3>
           <div className="grid gap-5 md:grid-cols-3">
             <FormInput
@@ -505,7 +505,7 @@ export function JoinForm() {
           </p>
         </section>
 
-        <fieldset className="space-y-3 rounded-2xl border border-slate-200 p-4">
+        <fieldset className="space-y-3 rounded-2xl border border-slate-200 p-4 mb-4">
           <legend className="px-1 text-sm font-semibold text-slate-800">
             কর্মক্ষেত্র (নিয়োগ)<span className="text-red-500">*</span>
           </legend>
@@ -527,7 +527,7 @@ export function JoinForm() {
           ) : null}
         </fieldset>
         
-        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 mb-2">
         <FormTextarea
           label="সংক্ষিপ্ত তথ্য"
           required
@@ -579,17 +579,20 @@ export function JoinForm() {
         ) : null}
         </div>
 
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-(--brand-green)
-           px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_24px_rgba(10,163,79,0.22)] 
-           transition-all duration-300 hover:-translate-y-0.5 hover:bg-(--brand-green-dark) 
-           hover:shadow-[0_16px_30px_rgba(10,163,79,0.28)] disabled:cursor-not-allowed disabled:opacity-70 
-           disabled:hover:translate-y-0"
-        >
-          {isSubmitting ? "জমা দেওয়া হচ্ছে..." : "সদস্যপদের আবেদন জমা দিন"}
-        </button>
+        <div className="flex justify-center mb-2">
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-(--brand-green)
+             px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_24px_rgba(10,163,79,0.22)] 
+             transition-all duration-300 hover:-translate-y-0.5 hover:bg-(--brand-green-dark) 
+             hover:shadow-[0_16px_30px_rgba(10,163,79,0.28)] disabled:cursor-not-allowed disabled:opacity-70 
+             disabled:hover:translate-y-0"
+          >
+            {isSubmitting ? "জমা দেওয়া হচ্ছে..." : "সদস্যপদের আবেদন জমা দিন"}
+          </button>
+        </div>
+   
       </form>
     </div>
   );
