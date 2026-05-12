@@ -3,108 +3,107 @@ const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
 
 const educationEntrySchema = z.object({
-  degree: z.string().min(1, "ডিগ্রি/পরীক্ষার নাম আবশ্যক"),
-  institution: z.string().min(1, "শিক্ষা প্রতিষ্ঠানের নাম আবশ্যক"),
-  result: z.string().min(1, "বিশ্ববিদ্যালয়ের নাম আবশ্যক"),
+  degree: z.string().min(1, "Degree/Exam name is required"),
+  institution: z.string().min(1, "Institution name is required"),
+  result: z.string().min(1, "Result/University name is required"),
   passingYear: z
     .string()
-    .min(1, "পাশের বছর আবশ্যক")
-    .regex(/^[1-9]{1}[0-9]{3}$/, "পাশের বছরটি সঠিকভাবে দিন   "),
+    .min(1, "Year of passing is required")
+    .regex(/^[1-9]{1}[0-9]{3}$/, "Please provide a valid passing year"),
 });
 
 export const joinApplicationSchema = z.object({
   fullNameBn: z
     .string()
-    .min(1, "বাংলা নাম আবশ্যক")
-    .min(3, "বাংলা নাম কমপক্ষে ৩ অক্ষর হতে হবে"),
+    .min(1, "Bangla name is required")
+    .min(3, "Bangla name must be at least 3 characters"),
   fullNameEn: z
     .string()
-    .min(1, "ইংরেজি নাম আবশ্যক")
-    .min(3, "ইংরেজি নাম কমপক্ষে ৩ অক্ষর হতে হবে"),
+    .min(1, "English name is required")
+    .min(3, "English name must be at least 3 characters"),
   fatherName: z
     .string()
-    .min(1, "পিতার নাম আবশ্যক")
-    .min(3, "পিতার নাম কমপক্ষে ৩ অক্ষর হতে হবে"),
+    .min(1, "Father's name is required")
+    .min(3, "Father's name must be at least 3 characters"),
   motherName: z
     .string()
-    .min(1, "মাতার নাম আবশ্যক")
-    .min(3, "মাতার নাম কমপক্ষে ৩ অক্ষর হতে হবে"),
+    .min(1, "Mother's name is required")
+    .min(3, "Mother's name must be at least 3 characters"),
     
-  dateOfBirth: z.string().min(10, "জন্ম তারিখ আবশ্যক"),
+  dateOfBirth: z.string().min(10, "Date of birth is required"),
   nationalId: z
     .string()
-    .min(1, "জাতীয় পরিচয়পত্র নম্বর আবশ্যক")
-    .regex(/^\d{4,}-?\d*-?\d*$/, "সঠিক জাতীয় পরিচয়পত্র নম্বর দিন (শুধুমাত্র সংখ্যা ও ড্যাশ - থাকতে পারবে)"),
+    .min(1, "National ID number is required")
+    .regex(/^\d{4,}-?\d*-?\d*$/, "Please provide a valid National ID (numbers and dashes only)"),
     
   medicalRegNo: z
     .string()
-    .min(1, "চিকিৎসা নিবন্ধন নম্বর আবশ্যক")
-    .regex(/^[0-9০-৯-]+$/, "শুধুমাত্র সংখ্যা ব্যবহার করতে পারবেন")
-    .min(3, "চিকিৎসা নিবন্ধন নম্বর অন্তত ৩ অক্ষর হতে হবে")
-,
+    .min(1, "Medical registration number is required")
+    .regex(/^[0-9০-৯-]+$/, "Only numbers are allowed")
+    .min(3, "Medical registration number must be at least 3 characters"),
     
-  membershipType: z.string().min(1, "সদস্যের ধরন নির্বাচন করুন"),
+  membershipType: z.string().min(1, "Please select the membership type"),
   email: z
     .string()
-    .min(1, "ইমেইল আবশ্যক")
+    .min(1, "Email is required")
     .regex(
       /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-      "সঠিক ইমেইল ঠিকানা লিখুন"
+      "Please provide a valid email address"
     )
-    .min(1, "ইমেইল আবশ্যক")
-    .email("সঠিক ইমেইল ঠিকানা লিখুন"),
+    .min(1, "Email is required")
+    .email("Please provide a valid email address"),
   mobile: z
     .string()
-    .min(1, "মোবাইল নম্বর আবশ্যক")
-    .min(10, "মোবাইল নম্বর খুব ছোট")
-    .regex(/^[0-9০-৯-]+$/, "শুধুমাত্র সংখ্যা (বাংলা বা ইংরেজি) ও ড্যাশ (-) ব্যবহার করতে পারবেন"),
+    .min(1, "Mobile number is required")
+    .min(10, "Mobile number is too short")
+    .regex(/^[0-9০-৯-]+$/, "Only numbers (Bengali or English) and dashes (-) are allowed"),
     
   phone: z.string()
-    .min(1, "ফোন নম্বর আবশ্যক")
-    .min(6, "ফোন নম্বর খুব ছোট")
-    .regex(/^[0-9০-৯-]+$/, "শুধুমাত্র সংখ্যা (বাংলা বা ইংরেজি) ও ড্যাশ (-) ব্যবহার করতে পারবেন"),
+    .min(1, "Phone number is required")
+    .min(6, "Phone number is too short")
+    .regex(/^[0-9০-৯-]+$/, "Only numbers (Bengali or English) and dashes (-) are allowed"),
 
-  presentVillage: z.string().min(1, "বর্তমান ঠিকানার গ্রাম আবশ্যক"),
-  presentPost: z.string().min(1, "বর্তমান ঠিকানার পোস্ট আবশ্যক"),
-  presentThana: z.string().min(1, "বর্তমান ঠিকানার থানা আবশ্যক"),
-  presentDistrict: z.string().min(1, "বর্তমান ঠিকানার জেলা আবশ্যক"),
-  permanentVillage: z.string().min(1, "স্থায়ী ঠিকানার গ্রাম আবশ্যক"),
-  permanentPost: z.string().min(1, "স্থায়ী ঠিকানার পোস্ট আবশ্যক"),
-  permanentThana: z.string().min(1, "স্থায়ী ঠিকানার থানা আবশ্যক"),
-  permanentDistrict: z.string().min(1, "স্থায়ী ঠিকানার জেলা আবশ্যক"),
+  presentVillage: z.string().min(1, "Present address (village) is required"),
+  presentPost: z.string().min(1, "Present address (post) is required"),
+  presentThana: z.string().min(1, "Present address (thana) is required"),
+  presentDistrict: z.string().min(1, "Present address (district) is required"),
+  permanentVillage: z.string().min(1, "Permanent address (village) is required"),
+  permanentPost: z.string().min(1, "Permanent address (post) is required"),
+  permanentThana: z.string().min(1, "Permanent address (thana) is required"),
+  permanentDistrict: z.string().min(1, "Permanent address (district) is required"),
   specialty: z.string().optional(),
   educationEntries: z
     .array(educationEntrySchema)
-    .min(1, "কমপক্ষে একটি শিক্ষাগত তথ্য যোগ করুন"),
+    .min(1, "Please add at least one educational entry"),
   entryFee: z.coerce
-    .number({ message: "প্রবেশ ফি আবশ্যক" })
-    .min(0, "প্রবেশ ফি ০ বা তার বেশি হতে হবে"),
+    .number({ message: "Entry fee is required" })
+    .min(0, "Entry fee must be 0 or greater"),
   annualFee: z.coerce
-    .number({ message: "বার্ষিক চাঁদা আবশ্যক" })
-    .min(0, "বার্ষিক চাঁদা ০ বা তার বেশি হতে হবে"),
+    .number({ message: "Annual fee is required" })
+    .min(0, "Annual fee must be 0 or greater"),
   lifetimeFee: z.coerce
-    .number({ message: "আজীবন সদস্য চাঁদা আবশ্যক" })
-    .min(0, "আজীবন সদস্য চাঁদা ০ বা তার বেশি হতে হবে"),
+    .number({ message: "Lifetime membership fee is required" })
+    .min(0, "Lifetime fee must be 0 or greater"),
   workplaceTypes: z
     .array(z.string())
-    .min(1, "কর্মক্ষেত্র (নিয়োগ) থেকে অন্তত একটি নির্বাচন করুন"),
+    .min(1, "Select at least one workplace (employment) type"),
   declarationAccepted: z
     .boolean()
-    .refine((value) => value, "ঘোষণা গ্রহণ করা আবশ্যক"),
+    .refine((value) => value, "You must accept the declaration"),
   notes: z
     .string()
-    .min(1, "আবেদন সম্পর্কিত সংক্ষিপ্ত তথ্য লিখুন")
-    .min(10, "কমপক্ষে ১০ অক্ষরের তথ্য লিখুন"),
+    .min(1, "Please provide some information about the application")
+    .min(10, "Please write at least 10 characters"),
   profileImage: z
-    .instanceof(File, { message: "প্রোফাইল ছবি আবশ্যক" })
-    .refine((file) => file.size > 0, "প্রোফাইল ছবি আবশ্যক")
+    .instanceof(File, { message: "Profile image is required" })
+    .refine((file) => file.size > 0, "Profile image is required")
     .refine(
       (file) => file.size <= MAX_FILE_SIZE,
-      "ছবির সাইজ ৫MB এর কম হতে হবে",
+      "Image size must be less than 5MB",
     )
     .refine(
       (file) => ACCEPTED_IMAGE_TYPES.includes(file.type),
-      "শুধু JPG, PNG, বা WEBP ছবি গ্রহণযোগ্য",
+      "Only JPG, PNG, or WEBP images are accepted",
     ),
 });
 

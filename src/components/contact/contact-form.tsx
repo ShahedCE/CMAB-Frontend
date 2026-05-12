@@ -61,39 +61,39 @@ export function ContactForm() {
     <div className="rounded-4xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
       <div className="max-w-xl">
         <span className="inline-flex rounded-full bg-(--brand-green-soft) px-3 py-1 text-xs font-semibold tracking-[0.16em] text-(--brand-green-dark)">
-          বার্তা পাঠান
+          Send Message
         </span>
 
         <h2 className="mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-          যোগাযোগ ফর্ম
+          Contact Form
         </h2>
 
         <p className="mt-3 text-sm leading-7 text-slate-600">
-          ফর্মটি পূরণ করুন—আমাদের টিম যত দ্রুত সম্ভব আপনার সাথে যোগাযোগ করবে।
+          Please fill out the form—our team will get back to you as soon as possible.
         </p>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="mt-8 grid gap-5">
         <FormInput
-          label="নাম"
-          placeholder="আপনার নাম লিখুন"
+          label="Name"
+          placeholder="Enter your name"
           requiredMark
           error={errors.name?.message}
           {...register("name")}
         />
 
         <FormInput
-          label="ইমেইল"
+          label="Email"
           type="email"
-          placeholder="আপনার ইমেইল লিখুন"
+          placeholder="Enter your email"
           requiredMark
           error={errors.email?.message}
           {...register("email")}
         />
 
         <FormTextarea
-          label="বার্তা"
-          placeholder="আপনার বার্তা লিখুন"
+          label="Message"
+          placeholder="Enter your message"
           requiredMark
           error={errors.message?.message}
           {...register("message")}
@@ -116,7 +116,7 @@ export function ContactForm() {
           disabled={isSubmitting}
           className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-(--brand-green) px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_24px_rgba(10,163,79,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-(--brand-green-dark) hover:shadow-[0_16px_30px_rgba(10,163,79,0.28)] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
         >
-          {isSubmitting ? "পাঠানো হচ্ছে..." : "বার্তা পাঠান"}
+          {isSubmitting ? "Sending..." : "Send Message"}
         </button>
       </form>
     </div>

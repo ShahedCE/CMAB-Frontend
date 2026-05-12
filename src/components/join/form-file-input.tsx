@@ -46,16 +46,17 @@ export function FormFileInput({
         }`}
       >
         <span className="rounded-xl bg-(--brand-green-soft) px-4 py-2 text-sm font-semibold text-(--brand-green-dark)">
-          ফাইল নির্বাচন করুন
+          Select file
         </span>
         <span className="truncate text-slate-600">
-          {fileName || "এখনো কোনো ফাইল নির্বাচন করা হয়নি"}
+          {fileName || "No file selected yet"}
         </span>
       </label>
 
       <p className="text-xs text-slate-500">
-        JPG, PNG বা WEBP ছবি আপলোড করুন। সর্বোচ্চ সাইজ ৫MB।
+        Upload a JPG, PNG, or WEBP image. Maximum size 5MB.
       </p>
+ 
 
       {error ? <p className="text-sm text-red-600">{error}</p> : null}
     </div>

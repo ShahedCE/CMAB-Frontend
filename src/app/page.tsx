@@ -51,6 +51,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             {/* English Version First */}
+            {/*
             <h2 className="text-sm font-bold text-teal-600 uppercase tracking-widest mb-2">About Us</h2>
             <h3 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
               Dedicated to <br/> <span className="text-emerald-600">the Welfare of Humanity</span>
@@ -62,7 +63,7 @@ export default function Home() {
             <Link href="/about" className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:underline">
               Read More <ChevronRight className="group-hover:translate-x-1 transition-transform"/>
             </Link>
-
+            */}
             {/* Bangla Version */}
             <div className="mt-12">
               <h2 className="text-sm font-bold text-teal-600 uppercase tracking-widest mb-2">আমাদের পরিচিতি</h2>
@@ -89,6 +90,7 @@ export default function Home() {
             className="relative"
           >
             {/* English Goal */}
+            {/*
             <div className="relative bg-white p-8 rounded-3xl shadow-2xl border border-gray-100 flex flex-col items-center justify-center min-h-100">
               <Heart size={80} className="text-red-500 mb-6 animate-pulse" />
               <h4 className="text-2xl font-bold text-gray-900 mb-4 text-center">Our Mission</h4>
@@ -106,7 +108,8 @@ export default function Home() {
                   Providing services inspired by Christian values
                 </li>
               </ul>
-              </div>
+            </div>
+            */}
               
               {/* Bangla Goal */}
               <div className="relative bg-white p-8 rounded-3xl shadow-2xl border border-gray-100 flex flex-col items-center justify-center min-h-100 mt-8">
@@ -134,10 +137,40 @@ export default function Home() {
         </div>
       </section>
 
+      {/*CMAB Song*/}   
+      <section className="bg-gray-50  px-4 py-16">
+            <div className="mx-auto max-w-6xl text-center">
+              <h2 className="text-3xl font-bold text-[#009A5B] md:text-4xl">
+                সিএমএবি সঙ্গীত
+              </h2>
+
+              <p className="mt-3 text-sm text-slate-600 md:text-base">
+                “সেবা পাইতে নয় সেবা করিতে আসিয়াছি।”
+              </p>
+
+              <div className="mt-8">
+                {/* 
+                  The <Image> import may not be available here, or you may not be using Next.js's 'next/image'.
+                  Fall back to HTML <img> element for compatibility.
+                */}
+                <img
+                  src="/song.png"
+                  alt="সিএমএবি সঙ্গীত"
+                  width={1000}
+                  height={1400}
+                  className="mx-auto h-auto w-full max-w-3xl rounded-2xl border border-slate-100 shadow-xl"
+                  loading="lazy"
+                />
+          
+              </div>
+            </div>
+          </section>
+
       {/* Activities Section */}
-      <section className="py-24 bg-white relative">
+      <section className="py-24 bg-gray-50  relative">
          <div className="max-w-7xl mx-auto px-6">
             {/* English Activities Heading */}
+            {/*
             <div className="text-center mb-16">
               <h2 className="text-sm font-bold text-teal-600 uppercase tracking-widest mb-2">Initiatives</h2>
               <h3 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Our Activities</h3>
@@ -163,8 +196,9 @@ export default function Home() {
                 </motion.div>
               ))}
             </div>
+            */}
             {/* Bangla Activities Heading */}
-            <div className="text-center mb-16">
+            <div className="text-center  mb-16">
               <h2 className="text-sm font-bold text-teal-600 uppercase tracking-widest mb-2">কর্মসূচি</h2>
               <h3 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">আমাদের কার্যক্রম</h3>
               <p className="text-gray-500 max-w-2xl mx-auto text-lg">
@@ -179,7 +213,7 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   key={i}
-                  className="bg-gray-50 p-8 rounded-3xl hover:bg-white hover:shadow-2xl transition-all duration-300 border border-transparent hover:border-gray-100 group"
+                  className="bg-white-50 p-8 rounded-3xl hover:bg-white hover:shadow-2xl transition-all duration-300 border border-transparent hover:border-gray-100 group"
                 >
                   <div className="bg-white w-16 h-16 rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     {item.icon}
@@ -196,7 +230,7 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="py-24 relative bg-emerald-700 overflow-hidden">
-        {/* English CTA */}
+        {/* English CTA 
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 mix-blend-overlay"></div>
         <div className="absolute -left-40 -top-40 w-96 h-96 bg-emerald-600 rounded-full blur-[100px] opacity-30"></div>
         <div className="absolute -right-40 -bottom-40 w-96 h-96 bg-teal-600 rounded-full blur-[100px] opacity-20"></div>
@@ -211,7 +245,8 @@ export default function Home() {
             Contact Us Today
           </Link>
         </div>
-        {/* Bangla CTA 
+        */}
+        {/* Bangla CTA */}
         <div className="relative max-w-4xl mx-auto px-6 text-center z-10">
           <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6">
             আমাদের সেবায় অংশগ্রহণ করুন
@@ -223,7 +258,7 @@ export default function Home() {
             আজই যোগাযোগ করুন
           </Link>
         </div>
-        */}
+        
       </section>
     </main>
   );

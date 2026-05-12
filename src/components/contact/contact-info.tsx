@@ -103,22 +103,21 @@ export function ContactInfo() {
      
       <InfoItem
         icon={<LocationIcon />}
-        title="প্রধান কার্যালয়ের ঠিকানা"
+        title="Head Office Address"
         content={
           <p>
-            খ্রিস্টিয়ান মেডিকেল অ্যাসোসিয়েশন বাংলাদেশ (সিএমএবি)
+            Christian Medical Association Bangladesh (CMAB)
             <br />
-            জাতীয় চার্চ পরিষদ, বাংলাদেশ ।
+            National Council of Churches, Bangladesh
             <br />
-            ৩৯৫ নিউ ইসকাটন রোড, রমনা, ঢাকা-১২১৭
-       
+            395 New Eskaton Road, Ramna, Dhaka-1217
           </p>
         }
       />
 
       <InfoItem
         icon={<PhoneIcon />}
-        title="ফোন / হোয়াটসঅ্যাপ"
+        title="Phone / WhatsApp"
         content={
           <div className="flex flex-col gap-1">
             <Link
@@ -133,7 +132,7 @@ export function ContactInfo() {
               rel="noreferrer"
               className="text-slate-700 transition-colors hover:text-(--brand-green-dark)"
             >
-              হোয়াটসঅ্যাপে চ্যাট করুন
+              Chat on WhatsApp
             </Link>
           </div>
         }
@@ -141,7 +140,7 @@ export function ContactInfo() {
 
       <InfoItem
         icon={<MailIcon />}
-        title="ইমেইল ঠিকানা"
+        title="Email Address"
         content={
           <Link
             href="mailto:info@cmab.org"
@@ -154,7 +153,7 @@ export function ContactInfo() {
 
       <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
-          সোশ্যাল লিংকসমূহ
+          Social Links
         </h3>
 
         <div className="mt-4 flex items-center gap-3">
@@ -180,6 +179,7 @@ export function ContactInfo() {
              border-[rgba(10,163,79,0.14)] bg-white text-slate-700 transition-all 
              duration-300 hover:-translate-y-1 hover:border-(--brand-green) hover:bg-(--brand-green-soft)
               hover:text-(--brand-green-dark)"
+      
           >
             <WhatsAppIcon />
           </Link>
