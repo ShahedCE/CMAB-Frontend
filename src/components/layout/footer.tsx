@@ -14,6 +14,8 @@ const quickLinks: FooterLink[] = [
   { label: "About", href: "/about" },
   { label: "Member", href: "/members" },
   { label: "Activities", href: "/activities" },
+  { label: "Archive", href: "/archive" },//added
+  { label: "Messages", href: "/messages" },//added
   { label: "Contact", href: "/contact" },
   { label: "Join Us", href: "/join" },
 ];

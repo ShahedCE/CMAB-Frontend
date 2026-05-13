@@ -14,8 +14,8 @@ function isAuthRoute(url?: string) {
 }
 
 export const apiClient = axios.create({
-  baseURL: "/api/admin",
-});
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+});  //editted
 
 apiClient.interceptors.request.use((config) => {
   const token = getAccessToken();

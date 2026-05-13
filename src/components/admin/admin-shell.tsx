@@ -22,8 +22,10 @@ const navItems = [
   { href: "/admin", label: "Dashboard" },
   { href: "/admin/join-requests", label: "Join Requests & Member Details" },
   { href: "/admin/members", label: "Members" },
-  { href: "/admin/contacts", label: "Contacts" },
   { href: "/admin/activities", label: "Activities" },
+  { href: "/admin/archive", label: "Archive" },
+  { href: "/admin/contacts", label: "Contacts" },
+  { href: "/admin/messages", label: "Messages" },
   { href: "/admin/notifications", label: "Notifications" },
 ];
 
