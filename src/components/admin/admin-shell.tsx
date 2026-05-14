@@ -22,6 +22,7 @@ const navItems = [
   { href: "/admin", label: "Dashboard" },
   { href: "/admin/join-requests", label: "Join Requests & Member Details" },
   { href: "/admin/members", label: "Members" },
+  { href: "/admin/executive-members", label: "Executive Members" },
   { href: "/admin/activities", label: "Activities" },
   { href: "/admin/archive", label: "Archive" },
   { href: "/admin/contacts", label: "Contacts" },
