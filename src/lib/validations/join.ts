@@ -17,10 +17,7 @@ export const joinApplicationSchema = z.object({
     .string()
     .min(1, "Bangla name is required")
     .min(3, "Bangla name must be at least 3 characters"),
-  fullNameEn: z
-    .string()
-    .min(1, "English name is required")
-    .min(3, "English name must be at least 3 characters"),
+  //fullNameEn: z,
   fatherName: z
     .string()
     .min(1, "Father's name is required")

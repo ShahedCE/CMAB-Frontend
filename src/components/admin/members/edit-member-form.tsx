@@ -44,7 +44,7 @@ export default function EditMemberForm() {
     mode: "onChange",
     defaultValues: {
       fullNameBn: "",
-      fullNameEn: "",
+ 
       fatherName: "",
       motherName: "",
       dateOfBirth: "",
@@ -120,7 +120,6 @@ export default function EditMemberForm() {
 
         reset({
           fullNameBn: data?.fullNameBn || "",
-          fullNameEn: data?.fullNameEn || "",
           fatherName: data?.fatherName || "",
           motherName: data?.motherName || "",
           dateOfBirth: data?.dateOfBirth ? String(data.dateOfBirth).slice(0, 10) : "",
@@ -171,7 +170,6 @@ export default function EditMemberForm() {
       const formData = new FormData();
 
       formData.append("fullNameBn", values.fullNameBn);
-      formData.append("fullNameEn", values.fullNameEn);
       formData.append("fatherName", values.fatherName);
       formData.append("motherName", values.motherName);
       formData.append("membershipType", values.membershipType);
@@ -258,13 +256,7 @@ export default function EditMemberForm() {
         />
 
         <div className="grid gap-5 md:grid-cols-2">
-          <FormInput
-            label="নাম (ইংরেজি)"
-            required
-            placeholder="Your name in English"
-            error={errors.fullNameEn?.message}
-            {...register("fullNameEn")}
-          />
+  
           <FormInput
             label="জন্ম তারিখ"
             type="date"

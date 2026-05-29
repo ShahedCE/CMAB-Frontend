@@ -16,11 +16,7 @@ export const editMemberSchema = z.object({
     .min(1, "বাংলা নাম আবশ্যক")
     .min(3, "বাংলা নাম কমপক্ষে ৩ অক্ষর হতে হবে"),
 
-  fullNameEn: z
-    .string()
-    .min(1, "ইংরেজি নাম আবশ্যক")
-    .min(3, "ইংরেজি নাম কমপক্ষে ৩ অক্ষর হতে হবে"),
-
+ 
   fatherName: z
     .string()
     .min(1, "পিতার নাম আবশ্যক")

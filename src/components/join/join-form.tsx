@@ -55,7 +55,7 @@ export function JoinForm() {
     mode: "onChange",
     defaultValues: {
       fullNameBn: "",
-      fullNameEn: "",
+      //fullNameEn: "",
       fatherName: "",
       motherName: "",
       dateOfBirth: "",
@@ -128,7 +128,7 @@ export function JoinForm() {
 
       reset({
         fullNameBn: "",
-        fullNameEn: "",
+       // fullNameEn: "",
         fatherName: "",
         motherName: "",
         dateOfBirth: "",
@@ -163,7 +163,9 @@ export function JoinForm() {
         notes: "",
         profileImage: undefined,
       });
-    } catch (err) {
+    } catch (err:any) {
+      console.log(err.response?.data);
+      console.log(err.response?.status);
       console.error(err);
       setSubmitError(
         "Failed to submit your application. Please try again."
@@ -335,9 +337,6 @@ export function JoinForm() {
 </section>
     <div className="rounded-4xl border border-slate-200 bg-white  shadow-sm sm:p-8 lg:p-10">
 
-
-
-
        {/* New div below "Join CMAB Form" */}
        <div className="flex justify-center my-2">
           <span className="inline-block bg-emerald-100 text-emerald-800 text-sm px-4 py-1 rounded-xl font-medium">
@@ -439,8 +438,8 @@ export function JoinForm() {
             >
               <option value="">সদস্যের ধরন নির্বাচন করুন / Select Member Type</option>
               <option value="general">সাধারণ সদস্য / General</option>
-              <option value="light">লাইট সদস্য / Light</option>
-              <option value="irregular">অনিয়মিত সদস্য / Irregular</option>
+              <option value="life">লাইফ সদস্য / Life</option>
+                       <option value="irregular">অনিয়মিত সদস্য / Irregular</option>
             </select>
             {errors.membershipType ? (
               <p className="text-sm text-red-600">
