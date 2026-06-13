@@ -24,52 +24,101 @@ A secure administrative dashboard that enables authorized users to manage websit
 Administrators can:
 
 Manage executive members
+
 Publish and update news and notices
+
 Manage digital archives and publications
+
 Upload and organize media files
+
 Control website content dynamically
+
 Perform CRUD (Create, Read, Update, Delete) operations across multiple modules
+
 Manage file and image uploads
+
 Maintain organizational information without requiring code changes
+
 Key Features
+
 Public Website
+
 Responsive design for mobile, tablet, and desktop
+
 SEO-friendly architecture
+
 Dynamic content rendering
+
 Optimized image handling
+
 Modern UI/UX experience
+
 Admin Dashboard
+
 Authentication and protected routes
+
 Role-based administrative workflow
+
 Dynamic content management
+
 Form validation
+
 File and image upload management
+
 CRUD operations for all major modules
+
 Pagination, filtering, and search support
+
 Technical Features
+
 REST API integration
+
 Type-safe development with TypeScript
+
 Form handling with validation
+
 Reusable component architecture
+
 Scalable folder structure
+
 Error handling and loading states
+
 API-driven content management
+
+
 Technology Stack
+
 Frontend
+
 Next.js (App Router)
+
 React
+
 TypeScript
+
 Tailwind CSS
+
 React Hook Form
+
 Zod
+
 Axios
+
 Backend
+
 NestJS
+
 PostgreSQL
+
 REST API
+
 JWT Authentication
+
 File Upload Management
+
+
 Project Goal
+
 
 The primary goal of this project is to provide CMAB with a centralized digital platform that simplifies content management, improves accessibility of organizational information, and creates a scalable foundation for future digital initiatives.
 
