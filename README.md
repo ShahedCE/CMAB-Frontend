@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+CMAB Website & Administration System
+Project Overview
 
-## Getting Started
+The CMAB (Community Medical Association of Bangladesh) Website & Administration System is a full-stack web application designed to modernize the organization's digital presence and streamline content management operations.
 
-First, run the development server:
+The platform consists of two major modules:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Public Website
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A responsive public-facing website where visitors can:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+View organizational information and history
+Explore executive committee members
+Read news, notices, and announcements
+Access publications and digital archives
+Browse photo galleries and media content
+Contact the organization through dedicated communication channels
+Access downloadable resources and important documents
+2. Administration Panel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+A secure administrative dashboard that enables authorized users to manage website content through a centralized interface.
 
-## Learn More
+Administrators can:
 
-To learn more about Next.js, take a look at the following resources:
+Manage executive members
+Publish and update news and notices
+Manage digital archives and publications
+Upload and organize media files
+Control website content dynamically
+Perform CRUD (Create, Read, Update, Delete) operations across multiple modules
+Manage file and image uploads
+Maintain organizational information without requiring code changes
+Key Features
+Public Website
+Responsive design for mobile, tablet, and desktop
+SEO-friendly architecture
+Dynamic content rendering
+Optimized image handling
+Modern UI/UX experience
+Admin Dashboard
+Authentication and protected routes
+Role-based administrative workflow
+Dynamic content management
+Form validation
+File and image upload management
+CRUD operations for all major modules
+Pagination, filtering, and search support
+Technical Features
+REST API integration
+Type-safe development with TypeScript
+Form handling with validation
+Reusable component architecture
+Scalable folder structure
+Error handling and loading states
+API-driven content management
+Technology Stack
+Frontend
+Next.js (App Router)
+React
+TypeScript
+Tailwind CSS
+React Hook Form
+Zod
+Axios
+Backend
+NestJS
+PostgreSQL
+REST API
+JWT Authentication
+File Upload Management
+Project Goal
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The primary goal of this project is to provide CMAB with a centralized digital platform that simplifies content management, improves accessibility of organizational information, and creates a scalable foundation for future digital initiatives.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The system allows administrators to manage all website content efficiently while ensuring visitors receive an optimized and user-friendly experience across all devices.
 
-## Deploy on Vercel
+My Contribution
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+As a Full Stack Developer, I contributed to:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Frontend development using Next.js and TypeScript
+Responsive UI implementation
+Admin dashboard development
+REST API integration
+Form validation and data handling
+File upload functionality
+CRUD module implementation
+Dynamic content rendering
+Bug fixing and feature enhancement
+Backend API development and database integration (where applicable)
