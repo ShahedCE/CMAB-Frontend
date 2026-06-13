@@ -16,6 +16,7 @@ Access publications and digital archives
 Browse photo galleries and media content
 Contact the organization through dedicated communication channels
 Access downloadable resources and important documents
+
 2. Administration Panel
 
 A secure administrative dashboard that enables authorized users to manage website content through a centralized interface.
