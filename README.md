@@ -10,11 +10,17 @@ The platform consists of two major modules:
 A responsive public-facing website where visitors can:
 
 View organizational information and history
+
 Explore executive committee members
+
 Read news, notices, and announcements
+
 Access publications and digital archives
+
 Browse photo galleries and media content
+
 Contact the organization through dedicated communication channels
+
 Access downloadable resources and important documents
 
 2. Administration Panel
@@ -129,12 +135,21 @@ My Contribution
 As a Full Stack Developer, I contributed to:
 
 Frontend development using Next.js and TypeScript
+
 Responsive UI implementation
+
 Admin dashboard development
+
 REST API integration
+
 Form validation and data handling
+
 File upload functionality
+
 CRUD module implementation
+
 Dynamic content rendering
+
 Bug fixing and feature enhancement
+
 Backend API development and database integration (where applicable)
